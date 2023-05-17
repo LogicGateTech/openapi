@@ -2,16 +2,16 @@
   "openapi": "3.0.1",
   "info": {
     "title": "LogicGate API",
-    "description": "Explore the LogicGate API - end points are listed below.",
+    "description": "Welcome to the Risk Cloud API v2! This is a collection of new API-first and RESTful API endpoints to streamline the creation of custom integrations with the Risk Cloud.\n\n**Note**: These endpoints are currently in **open alpha**, meaning that backwards compatibility is not guaranteed and breaking changes are to be expected as the endpoints are finalized. The full release of these new v2 endpoints is anticipated for late 2023.\n\nFor our existing collections of v1 endpoints, \nplease feel free to reference [Risk Cloud API v1](https://docs.logicgate.com).",
     "contact": {
       "name": "LogicGate",
       "email": "support@logicgate.com"
     },
-    "version": "v2023.3.0"
+    "version": "v2023.5.0"
   },
   "externalDocs": {
-    "description": "LogicGate Help Center",
-    "url": "https://help.logicgate.com"
+    "description": "Developer Portal",
+    "url": "https://www.logicgate.com/developer/"
   },
   "tags": [
     {
@@ -32,40 +32,6 @@
     }
   ],
   "paths": {
-    "/api/v1/account/token": {
-      "post": {
-        "tags": [
-          "Authentication"
-        ],
-        "summary": "Create an API Access Token",
-        "description": "**Permissions:** Authenticated User\n\nGenerates a new, expiring access token from the provided Client and Secret keys.",
-        "operationId": "getApiToken",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "A basic authorization header containing a Risk Cloud API access token in the format `Authorization: Basic {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "Basic {ENCODED}"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/LegacyApiTokenOut"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v2/workflows": {
       "get": {
         "tags": [
@@ -76,7 +42,7 @@
         "operationId": "readAllWorkflows",
         "parameters": [
           {
-            "name": "applicationId",
+            "name": "application-id",
             "in": "query",
             "description": "The unique ID of a parent application where, if provided, the response will only contain workflows from the identified application",
             "required": false,
@@ -86,12 +52,13 @@
             "example": "a1b2c3d4"
           },
           {
-            "name": "includeJiraWorkflows",
+            "name": "include-jira-workflows",
             "in": "query",
             "description": "Whether [Jira workflows](https://help.logicgate.com/hc/en-us) are to be included in the response in addition to regular workflows (defaults to true)",
             "required": false,
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "default": true
             },
             "example": false
           },
@@ -134,7 +101,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageModelOutWorkflowApiOut"
                 }
@@ -176,7 +143,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WorkflowApiOut"
                 }
@@ -196,7 +163,7 @@
         "operationId": "readAllWorkflowMaps",
         "parameters": [
           {
-            "name": "workflowId",
+            "name": "workflow-id",
             "in": "query",
             "description": "The unique ID of a workflow where, if provided, the response will only contain workflow maps from the identified workflow",
             "required": false,
@@ -244,7 +211,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageModelOutWorkflowMapApiOut"
                 }
@@ -286,7 +253,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WorkflowMapApiOut"
                 }
@@ -344,7 +311,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageModelOutApplicationApiOut"
                 }
@@ -386,9 +353,43 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApplicationApiOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/account/token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Create an API Access Token",
+        "description": "**Permissions:** Authenticated User\n\nGenerates a new, expiring access token from the provided Client and Secret keys.",
+        "operationId": "getApiToken",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A basic authorization header containing a Risk Cloud API access token in the format `Authorization: Basic {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic {ENCODED}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LegacyApiTokenOut"
                 }
               }
             }
@@ -429,7 +430,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WorkflowApiOut"
                 }
@@ -470,7 +471,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AppActionResponse"
                 }
@@ -521,7 +522,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WorkflowApiOut"
                 }
@@ -564,7 +565,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WorkflowMapApiOut"
                 }
@@ -605,7 +606,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AppActionResponse"
                 }
@@ -656,7 +657,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WorkflowMapApiOut"
                 }
@@ -699,7 +700,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApplicationApiOut"
                 }
@@ -740,7 +741,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AppActionResponse"
                 }
@@ -791,7 +792,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApplicationApiOut"
                 }
@@ -804,35 +805,12 @@
   },
   "components": {
     "schemas": {
-      "LegacyApiTokenOut": {
-        "title": "Api Token",
-        "type": "object",
-        "properties": {
-          "access_token": {
-            "type": "string",
-            "description": "An API access token to be used within the bearer authorization header of subsequent Risk Cloud API requests"
-          },
-          "token_type": {
-            "type": "string",
-            "description": "The token type, expected to be \"bearer\" for the Risk Cloud API"
-          },
-          "expires_in": {
-            "type": "integer",
-            "description": "The remaining time in seconds until the token expires",
-            "format": "int64"
-          },
-          "scope": {
-            "type": "string",
-            "description": "The privilege scope of the token, expected to be \"read write\" for the Risk Cloud API"
-          }
-        }
-      },
       "WorkflowApiCreateIn": {
         "title": "Workflow (Create)",
         "required": [
-          "applicationId",
+          "application-id",
           "name",
-          "recordPrefix"
+          "record-prefix"
         ],
         "type": "object",
         "properties": {
@@ -841,12 +819,12 @@
             "description": "The name of the workflow",
             "example": "Risk Assessments"
           },
-          "recordPrefix": {
+          "record-prefix": {
             "type": "string",
             "description": "The prefix to be used in the name of every record created from this workflow",
             "example": "Assessment"
           },
-          "applicationId": {
+          "application-id": {
             "type": "string",
             "description": "The unique ID of the parent application of the workflow",
             "example": "a1b2c3d4"
@@ -882,12 +860,12 @@
             "description": "The name of the workflow",
             "example": "Risk Assessments"
           },
-          "recordPrefix": {
+          "record-prefix": {
             "type": "string",
             "description": "The prefix to be used in the name of every record created from this workflow",
             "example": "Assessment"
           },
-          "applicationId": {
+          "application-id": {
             "type": "string",
             "description": "The unique ID of the parent application of the workflow",
             "example": "a1b2c3d4"
@@ -1033,7 +1011,7 @@
           "type": {
             "type": "string",
             "description": "The type of Risk Cloud application (defaults to NONE)",
-            "example": "IT_RISK_MANAGEMENT",
+            "example": "CONTROLS_COMPLIANCE",
             "enum": [
               "ACCESS_MANAGEMENT",
               "AML_KYC",
@@ -1044,20 +1022,28 @@
               "COMPLAINT_MANAGEMENT",
               "COMPLIANCE_MANAGEMENT",
               "CONTRACT_MANAGEMENT",
+              "CONTROLS_COMPLIANCE",
               "CONTROLS_MANAGEMENT",
               "CRISIS_MANAGEMENT",
               "CUSTOM",
               "CUSTOM_GRC_USE_CASE",
+              "CYBER_RISK_MANAGEMENT",
+              "DATA_PRIVACY_MANAGEMENT",
               "EMPLOYEE_COMPLIANCE",
               "ENTERPRISE_RISK_MANAGEMENT",
+              "ESG",
               "INCIDENT_MANAGEMENT",
+              "INTERNAL_AUDIT_MANAGEMENT",
               "IT_RISK_MANAGEMENT",
               "NONE",
+              "OPERATIONAL_RESILIENCY",
               "OTHER",
               "POLICY_AND_PROCEDURE_MANAGEMENT",
+              "POLICY_MANAGEMENT",
               "PRIVACY_MANAGEMENT",
               "QUANTIFY",
               "REGULATORY_COMPLIANCE",
+              "REPOSITORY",
               "RISK_QUANTIFICATION",
               "SOX_TESTING",
               "STANDARDS_REGULATIONS",
@@ -1121,7 +1107,7 @@
           "type": {
             "type": "string",
             "description": "The type of Risk Cloud application",
-            "example": "IT_RISK_MANAGEMENT",
+            "example": "CONTROLS_COMPLIANCE",
             "enum": [
               "ACCESS_MANAGEMENT",
               "AML_KYC",
@@ -1132,20 +1118,28 @@
               "COMPLAINT_MANAGEMENT",
               "COMPLIANCE_MANAGEMENT",
               "CONTRACT_MANAGEMENT",
+              "CONTROLS_COMPLIANCE",
               "CONTROLS_MANAGEMENT",
               "CRISIS_MANAGEMENT",
               "CUSTOM",
               "CUSTOM_GRC_USE_CASE",
+              "CYBER_RISK_MANAGEMENT",
+              "DATA_PRIVACY_MANAGEMENT",
               "EMPLOYEE_COMPLIANCE",
               "ENTERPRISE_RISK_MANAGEMENT",
+              "ESG",
               "INCIDENT_MANAGEMENT",
+              "INTERNAL_AUDIT_MANAGEMENT",
               "IT_RISK_MANAGEMENT",
               "NONE",
+              "OPERATIONAL_RESILIENCY",
               "OTHER",
               "POLICY_AND_PROCEDURE_MANAGEMENT",
+              "POLICY_MANAGEMENT",
               "PRIVACY_MANAGEMENT",
               "QUANTIFY",
               "REGULATORY_COMPLIANCE",
+              "REPOSITORY",
               "RISK_QUANTIFICATION",
               "SOX_TESTING",
               "STANDARDS_REGULATIONS",
@@ -1158,7 +1152,7 @@
             "description": "Whether the application is live",
             "example": false
           },
-          "restrictBuildAccess": {
+          "restrict-build-access": {
             "type": "boolean",
             "description": "Whether users with the Build entitlement must be granted permission to edit this application explicitly",
             "example": false
@@ -1167,6 +1161,29 @@
             "type": "string",
             "description": "Identifies the type of object this data represents",
             "example": "application"
+          }
+        }
+      },
+      "LegacyApiTokenOut": {
+        "title": "Api Token",
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "description": "An API access token to be used within the bearer authorization header of subsequent Risk Cloud API requests"
+          },
+          "token_type": {
+            "type": "string",
+            "description": "The token type, expected to be \"bearer\" for the Risk Cloud API"
+          },
+          "expires_in": {
+            "type": "integer",
+            "description": "The remaining time in seconds until the token expires",
+            "format": "int64"
+          },
+          "scope": {
+            "type": "string",
+            "description": "The privilege scope of the token, expected to be \"read write\" for the Risk Cloud API"
           }
         }
       },
@@ -1179,7 +1196,7 @@
             "description": "The name of the workflow",
             "example": "Risk Assessments"
           },
-          "recordPrefix": {
+          "record-prefix": {
             "type": "string",
             "description": "The prefix to be used in the name of every record created from this workflow",
             "example": "Assessment"
@@ -1271,7 +1288,7 @@
           "type": {
             "type": "string",
             "description": "The type of Risk Cloud application",
-            "example": "IT_RISK_MANAGEMENT",
+            "example": "CONTROLS_COMPLIANCE",
             "enum": [
               "ACCESS_MANAGEMENT",
               "AML_KYC",
@@ -1282,20 +1299,28 @@
               "COMPLAINT_MANAGEMENT",
               "COMPLIANCE_MANAGEMENT",
               "CONTRACT_MANAGEMENT",
+              "CONTROLS_COMPLIANCE",
               "CONTROLS_MANAGEMENT",
               "CRISIS_MANAGEMENT",
               "CUSTOM",
               "CUSTOM_GRC_USE_CASE",
+              "CYBER_RISK_MANAGEMENT",
+              "DATA_PRIVACY_MANAGEMENT",
               "EMPLOYEE_COMPLIANCE",
               "ENTERPRISE_RISK_MANAGEMENT",
+              "ESG",
               "INCIDENT_MANAGEMENT",
+              "INTERNAL_AUDIT_MANAGEMENT",
               "IT_RISK_MANAGEMENT",
               "NONE",
+              "OPERATIONAL_RESILIENCY",
               "OTHER",
               "POLICY_AND_PROCEDURE_MANAGEMENT",
+              "POLICY_MANAGEMENT",
               "PRIVACY_MANAGEMENT",
               "QUANTIFY",
               "REGULATORY_COMPLIANCE",
+              "REPOSITORY",
               "RISK_QUANTIFICATION",
               "SOX_TESTING",
               "STANDARDS_REGULATIONS",
@@ -1308,7 +1333,7 @@
             "description": "Whether the application is live",
             "example": false
           },
-          "restrictBuildAccess": {
+          "restrict-build-access": {
             "type": "boolean",
             "description": "Whether users with the Build entitlement must be granted permission to edit this application explicitly",
             "example": false
@@ -1325,13 +1350,13 @@
             "format": "int64",
             "example": 20
           },
-          "totalElements": {
+          "total-elements": {
             "type": "integer",
             "description": "The total number of items available",
             "format": "int64",
             "example": 50
           },
-          "totalPages": {
+          "total-pages": {
             "type": "integer",
             "description": "The total number of pages available based on the size",
             "format": "int64",
