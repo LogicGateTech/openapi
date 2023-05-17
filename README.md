@@ -1,7 +1,7 @@
 # Risk Cloud API: OpenAPI Specification
 
 <p>
-  <img src="https://img.shields.io/badge/release-2023.3.0-blue" />
+  <img src="https://img.shields.io/badge/release-v2023.5.0-blue" />
   <img src="https://img.shields.io/badge/openapi-3.0.1-green" />
 </p>
 
