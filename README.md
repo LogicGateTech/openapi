@@ -1,7 +1,7 @@
 # Risk Cloud API: OpenAPI Specification
 
 <p>
-  <img src="https://img.shields.io/badge/release-v2023.5.0-blue" />
+  <img src="https://img.shields.io/badge/release-v2023.5.1-blue" />
   <img src="https://img.shields.io/badge/openapi-3.0.1-green" />
 </p>
 
@@ -26,7 +26,7 @@ This OpenAPI Specification is the core, single source of truth for the Risk Clou
 ## **Links**
 
 - [LogicGate Risk Cloud Developer Portal](https://www.logicgate.com/developer/): Reference quick start guides, common API use cases, and release notes on our Developer Portal
-- [Risk Cloud API Documentation (v2)](https://docs.logicgate.com/v2/): Explore the open alpha of our new and upcoming v2 API documentation
+- [Risk Cloud API Documentation (v2)](https://docs.logicgate.com/v2/index.html): Explore the open alpha of our new and upcoming v2 API documentation
 - [Risk Cloud API Documentation (v1)](https://docs.logicgate.com): Explore our v1 API documentation
 
 ## Contact
