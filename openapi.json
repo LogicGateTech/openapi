@@ -7,7 +7,7 @@
       "name": "LogicGate",
       "email": "support@logicgate.com"
     },
-    "version": "v2023.5.0"
+    "version": "v2023.5.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -808,9 +808,9 @@
       "WorkflowApiCreateIn": {
         "title": "Workflow (Create)",
         "required": [
-          "application-id",
+          "applicationId",
           "name",
-          "record-prefix"
+          "recordPrefix"
         ],
         "type": "object",
         "properties": {
@@ -819,12 +819,12 @@
             "description": "The name of the workflow",
             "example": "Risk Assessments"
           },
-          "record-prefix": {
+          "recordPrefix": {
             "type": "string",
             "description": "The prefix to be used in the name of every record created from this workflow",
             "example": "Assessment"
           },
-          "application-id": {
+          "applicationId": {
             "type": "string",
             "description": "The unique ID of the parent application of the workflow",
             "example": "a1b2c3d4"
@@ -860,12 +860,12 @@
             "description": "The name of the workflow",
             "example": "Risk Assessments"
           },
-          "record-prefix": {
+          "recordPrefix": {
             "type": "string",
             "description": "The prefix to be used in the name of every record created from this workflow",
             "example": "Assessment"
           },
-          "application-id": {
+          "applicationId": {
             "type": "string",
             "description": "The unique ID of the parent application of the workflow",
             "example": "a1b2c3d4"
@@ -1152,7 +1152,7 @@
             "description": "Whether the application is live",
             "example": false
           },
-          "restrict-build-access": {
+          "restrictBuildAccess": {
             "type": "boolean",
             "description": "Whether users with the Build entitlement must be granted permission to edit this application explicitly",
             "example": false
@@ -1196,7 +1196,7 @@
             "description": "The name of the workflow",
             "example": "Risk Assessments"
           },
-          "record-prefix": {
+          "recordPrefix": {
             "type": "string",
             "description": "The prefix to be used in the name of every record created from this workflow",
             "example": "Assessment"
@@ -1333,7 +1333,7 @@
             "description": "Whether the application is live",
             "example": false
           },
-          "restrict-build-access": {
+          "restrictBuildAccess": {
             "type": "boolean",
             "description": "Whether users with the Build entitlement must be granted permission to edit this application explicitly",
             "example": false
@@ -1350,13 +1350,13 @@
             "format": "int64",
             "example": 20
           },
-          "total-elements": {
+          "totalElements": {
             "type": "integer",
             "description": "The total number of items available",
             "format": "int64",
             "example": 50
           },
-          "total-pages": {
+          "totalPages": {
             "type": "integer",
             "description": "The total number of pages available based on the size",
             "format": "int64",
