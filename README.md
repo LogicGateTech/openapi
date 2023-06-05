@@ -1,7 +1,7 @@
 # Risk Cloud API: OpenAPI Specification
 
 <p>
-  <img src="https://img.shields.io/badge/release-v2023.5.1-blue" />
+  <img src="https://img.shields.io/badge/release-v2023.5.2-blue" />
   <img src="https://img.shields.io/badge/openapi-3.0.1-green" />
 </p>
 
@@ -13,7 +13,7 @@ The Risk Cloud API v2's OpenAPI Specification is shared in this repository to pr
 
 The OpenAPI Specification is contained in the file `openapi.json`
 
-This OpenAPI Specification file represents the public Risk Cloud API endpoints of the latest release version, as displayed in the [Risk Cloud API Documentation (v2)](https://docs.logicgate.com/v2). These endpoints have been developed with API-First design, which is demonstrated by consistent styling, concise payloads, and powerful use cases.
+This OpenAPI Specification file represents the public Risk Cloud API endpoints of the latest release version, as displayed in the [Risk Cloud API Documentation (v2)](https://docs.logicgate.com/v2/index.html). These endpoints have been developed with API-First design, which is demonstrated by consistent styling, concise payloads, and powerful use cases.
 
 ## Getting Started
 
