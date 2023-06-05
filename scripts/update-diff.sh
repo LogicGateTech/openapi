@@ -13,6 +13,7 @@ old_tag=$1
 new_tag=$2
 build_dir="./build"
 
+rm -rf build
 mkdir build
 
 # Obtain OpenAPI Specifications for the old tag and the latest
@@ -31,7 +32,12 @@ docker rm openapidiff
 grep -v "\-\-\-" ./build/${new_tag}-diff.md > tmpfile && mv tmpfile ./build/${new_tag}-diff.md
 
 # Prepend the diff to CHANGELOG.md
-echo -e "## $new_tag\n\n$(cat ./build/${new_tag}-diff.md)\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
+if ! grep -q '[^[:space:]]' ./build/${new_tag}-diff.md; then
+    echo -e "## $new_tag\n\nNo API updates.\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
+else
+    echo -e "## $new_tag\n\n$(cat ./build/${new_tag}-diff.md)\n\n$(cat CHANGELOG.md)" > CHANGELOG.md
+fi
+
 
 # Update README.md version
 sed -i'.bak' -e "s/$old_tag/$new_tag/g" README.md
