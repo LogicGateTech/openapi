@@ -7,7 +7,7 @@
       "name": "LogicGate",
       "email": "support@logicgate.com"
     },
-    "version": "v2023.5.2"
+    "version": "v2023.6.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -1154,7 +1154,7 @@
           },
           "restrictBuildAccess": {
             "type": "boolean",
-            "description": "Whether users with the Build entitlement must be granted permission to edit this application explicitly",
+            "description": "Whether users with the Build entitlement must be explicitly granted permission to edit this application",
             "example": false
           },
           "object": {
@@ -1335,7 +1335,7 @@
           },
           "restrictBuildAccess": {
             "type": "boolean",
-            "description": "Whether users with the Build entitlement must be granted permission to edit this application explicitly",
+            "description": "Whether users with the Build entitlement must be explicitly granted permission to edit this application",
             "example": false
           }
         }

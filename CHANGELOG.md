@@ -1,3 +1,71 @@
+## v2023.6.0
+
+#### What's Changed
+
+##### `GET` /api/v2/applications/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `restrictBuildAccess` (boolean)
+        > Whether users with the Build entitlement must be explicitly granted permission to edit this application
+
+##### `PATCH` /api/v2/applications/{id}
+
+
+###### Request:
+
+Changed content type : `application/json`
+
+* Changed property `restrictBuildAccess` (boolean)
+    > Whether users with the Build entitlement must be explicitly granted permission to edit this application
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `restrictBuildAccess` (boolean)
+        > Whether users with the Build entitlement must be explicitly granted permission to edit this application
+
+##### `POST` /api/v2/applications
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `restrictBuildAccess` (boolean)
+        > Whether users with the Build entitlement must be explicitly granted permission to edit this application
+
+##### `GET` /api/v2/applications
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+
+        * Changed property `restrictBuildAccess` (boolean)
+            > Whether users with the Build entitlement must be explicitly granted permission to edit this application
+
 ## v2023.5.2
 
 No API updates.
