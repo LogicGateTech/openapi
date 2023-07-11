@@ -1,3 +1,7 @@
+## v2023.6.1
+
+No API updates.
+
 ## v2023.6.0
 
 #### What's Changed
