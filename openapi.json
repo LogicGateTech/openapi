@@ -7,7 +7,7 @@
       "name": "LogicGate",
       "email": "support@logicgate.com"
     },
-    "version": "v2023.6.1"
+    "version": "v2023.7.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -16,7 +16,7 @@
   "tags": [
     {
       "name": "Authentication",
-      "description": "Getting Started: How to create an [API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) to begin integrating with the Risk Cloud API"
+      "description": "Getting Started: How to create an [API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) to begin integrating with the Risk Cloud API"
     },
     {
       "name": "Application",
@@ -29,6 +29,10 @@
     {
       "name": "Workflow Map",
       "description": "A [Workflow Map](https://help.logicgate.com/hc/en-us/articles/4402683117588) represents a relationship between two Workflows"
+    },
+    {
+      "name": "Step",
+      "description": "A [Step](https://help.logicgate.com/hc/en-us/articles/4402674059668-Create-a-Step) lives in a Workflow and is configured with a set of Sections, Subsections and Fields to create a form"
     }
   ],
   "paths": {
@@ -89,7 +93,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -121,7 +125,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -199,7 +203,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -231,7 +235,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -256,6 +260,117 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WorkflowMapApiOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/steps": {
+      "get": {
+        "tags": [
+          "Step"
+        ],
+        "summary": "Retrieve steps",
+        "description": "**Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)\n\nRetrieve a page of all steps that the current user has [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.",
+        "operationId": "readAllSteps",
+        "parameters": [
+          {
+            "name": "workflow-id",
+            "in": "query",
+            "description": "The unique ID of a workflow where, if provided, the response will only contain steps from the identified workflow",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "example": "a1b2c3d4"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 20
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageModelOutStepApiOut"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Step"
+        ],
+        "summary": "Create a step",
+        "description": "**Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)\n\nCreate a step from a JSON request body.",
+        "operationId": "createStep",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StepApiCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StepApiOut"
                 }
               }
             }
@@ -299,7 +414,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -331,7 +446,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -375,7 +490,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A basic authorization header containing a Risk Cloud API access token in the format `Authorization: Basic {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A basic authorization header containing a Risk Cloud API access token in the format `Authorization: Basic {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -418,7 +533,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -459,7 +574,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -500,7 +615,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -553,7 +668,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -594,7 +709,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -635,7 +750,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -667,6 +782,141 @@
         }
       }
     },
+    "/api/v2/steps/{id}": {
+      "get": {
+        "tags": [
+          "Step"
+        ],
+        "summary": "Retrieve a step",
+        "description": "**Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)\n\nRetrieve a step specified by the ID in the URL path.",
+        "operationId": "readStep",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the step",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StepApiOut"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Step"
+        ],
+        "summary": "Delete a step",
+        "description": "**Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)\n\nDelete a step specified by the ID in the URL path.",
+        "operationId": "deleteStep",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the step",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppActionResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Step"
+        ],
+        "summary": "Update a step",
+        "description": "**Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)\n\nUpdate a step specified by the ID in the URL path from a JSON request body. Only present properties with non-empty values are updated.",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the step",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StepApiUpdateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StepApiOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/applications/{id}": {
       "get": {
         "tags": [
@@ -688,7 +938,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -729,7 +979,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -756,7 +1006,7 @@
         ],
         "summary": "Update an application",
         "description": "**Permissions:** [Build Access to application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)\n\nUpdate an application specified by the ID in the URL path from a JSON request body. Only present properties with non-empty values are updated.",
-        "operationId": "update",
+        "operationId": "update_1",
         "parameters": [
           {
             "name": "id",
@@ -770,7 +1020,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://help.logicgate.com/hc/en-us/articles/4402683132820-Obtain-an-API-Access-Token) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
             "required": true,
             "schema": {
               "type": "string"
@@ -958,6 +1208,154 @@
             "example": "workflow-map"
           }
         }
+      },
+      "StepApiCreateIn": {
+        "title": "Step (Create)",
+        "required": [
+          "name",
+          "workflowId"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the step",
+            "example": "Identify Risk"
+          },
+          "workflowId": {
+            "type": "string",
+            "description": "The unique ID of the parent workflow of the step",
+            "example": "a1b2c3d4"
+          },
+          "xpos": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "The x-coordinate of the step in the application builder (must not be less than 0, defaults to 0)",
+            "format": "int32",
+            "example": 20
+          },
+          "ypos": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "The y-coordinate of the step in the application builder (must not be less than 0, defaults to 0)",
+            "format": "int32",
+            "example": 20
+          },
+          "enableComments": {
+            "type": "boolean",
+            "description": "Whether comments are displayed on a step (defaults to false)",
+            "example": false
+          },
+          "assignableUserType": {
+            "type": "string",
+            "description": "Indicates which users are allowed to be assigned this step on a record (defaults to APP_AND_EXTERNAL_USERS)",
+            "example": "APP_AND_EXTERNAL_USERS",
+            "enum": [
+              "APP_AND_EXTERNAL_USERS",
+              "APP_USERS",
+              "EXTERNAL_USERS"
+            ]
+          },
+          "externalUserMfaRequired": {
+            "type": "boolean",
+            "description": "Whether MFA is required for external users to access this step. (defaults to false)",
+            "example": false
+          }
+        },
+        "description": "Step (Create)"
+      },
+      "StepApiOut": {
+        "title": "Step (Response)",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the step",
+            "example": "Identify Risk"
+          },
+          "xpos": {
+            "type": "integer",
+            "description": "The x-coordinate of the step in the application builder",
+            "format": "int32",
+            "example": 20
+          },
+          "ypos": {
+            "type": "integer",
+            "description": "The y-coordinate of the step in the application builder",
+            "format": "int32",
+            "example": 20
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the step",
+            "example": "ORIGIN",
+            "enum": [
+              "ORIGIN",
+              "CHAIN",
+              "END"
+            ]
+          },
+          "enableComments": {
+            "type": "boolean",
+            "description": "Whether comments are displayed on a step",
+            "example": false
+          },
+          "assignableUserType": {
+            "type": "string",
+            "description": "Indicates which users are allowed to be assigned this step on a record",
+            "example": "APP_AND_EXTERNAL_USERS",
+            "enum": [
+              "APP_AND_EXTERNAL_USERS",
+              "APP_USERS",
+              "EXTERNAL_USERS"
+            ]
+          },
+          "externalUserMfaRequired": {
+            "type": "boolean",
+            "description": "Whether MFA is required for external users to access this step.",
+            "example": false
+          },
+          "workflow": {
+            "$ref": "#/components/schemas/WorkflowPropertyApiOut"
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "step"
+          }
+        }
+      },
+      "WorkflowPropertyApiOut": {
+        "title": "Workflow (Property)",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the workflow",
+            "example": "Risk Assessments"
+          },
+          "recordPrefix": {
+            "type": "string",
+            "description": "The prefix to be used in the name of every record created from this workflow",
+            "example": "Assessment"
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "workflow"
+          }
+        },
+        "description": "The parent workflow of the step"
       },
       "ApplicationApiCreateIn": {
         "title": "Application (Create)",
@@ -1239,6 +1637,60 @@
         },
         "description": "Workflow (Update)"
       },
+      "StepApiUpdateIn": {
+        "title": "Step (Update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the step",
+            "example": "Identify Risk"
+          },
+          "xpos": {
+            "type": "integer",
+            "description": "The x-coordinate of the step in the application builder (must not be less than 0)",
+            "format": "int32",
+            "example": 20
+          },
+          "ypos": {
+            "type": "integer",
+            "description": "The y-coordinate of the step in the application builder (must not be less than 0)",
+            "format": "int32",
+            "example": 20
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the step (for END steps, this property cannot be updated since there would be no outgoing default next paths)",
+            "example": "ORIGIN",
+            "enum": [
+              "ORIGIN",
+              "CHAIN",
+              "END"
+            ]
+          },
+          "enableComments": {
+            "type": "boolean",
+            "description": "Whether comments are displayed on a step",
+            "example": false
+          },
+          "assignableUserType": {
+            "type": "string",
+            "description": "Indicates which users are allowed to be assigned this step on a record",
+            "example": "APP_AND_EXTERNAL_USERS",
+            "enum": [
+              "APP_AND_EXTERNAL_USERS",
+              "APP_USERS",
+              "EXTERNAL_USERS"
+            ]
+          },
+          "externalUserMfaRequired": {
+            "type": "boolean",
+            "description": "Whether MFA is required for external users to access this step.",
+            "example": false
+          }
+        },
+        "description": "Step (Update)"
+      },
       "ApplicationApiUpdateIn": {
         "title": "Application (Update)",
         "type": "object",
@@ -1431,6 +1883,25 @@
             "description": "A array of returned items",
             "items": {
               "$ref": "#/components/schemas/WorkflowMapApiOut"
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/PageLinksOut"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageInfoOut"
+          }
+        }
+      },
+      "PageModelOutStepApiOut": {
+        "title": "Page (Response)",
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "description": "A array of returned items",
+            "items": {
+              "$ref": "#/components/schemas/StepApiOut"
             }
           },
           "links": {
