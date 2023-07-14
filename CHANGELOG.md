@@ -1,3 +1,189 @@
+## v2023.7.0
+
+#### What's New
+
+##### `GET` /api/v2/steps
+
+> Retrieve steps
+
+##### `POST` /api/v2/steps
+
+> Create a step
+
+##### `GET` /api/v2/steps/{id}
+
+> Retrieve a step
+
+##### `DELETE` /api/v2/steps/{id}
+
+> Delete a step
+
+##### `PATCH` /api/v2/steps/{id}
+
+> Update a step
+
+#### What's Changed
+
+##### `POST` /api/v1/account/token
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A basic authorization header containing a Risk Cloud API access token in the format `Authorization: Basic {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `GET` /api/v2/workflows/{id}
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `DELETE` /api/v2/workflows/{id}
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `PATCH` /api/v2/workflows/{id}
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `GET` /api/v2/workflow-maps/{id}
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `DELETE` /api/v2/workflow-maps/{id}
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `PATCH` /api/v2/workflow-maps/{id}
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `GET` /api/v2/applications/{id}
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `DELETE` /api/v2/applications/{id}
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `PATCH` /api/v2/applications/{id}
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `POST` /api/v2/workflows
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `GET` /api/v2/workflows
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `POST` /api/v2/workflow-maps
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `GET` /api/v2/workflow-maps
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `POST` /api/v2/applications
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
+##### `GET` /api/v2/applications
+
+
+###### Parameters:
+
+Changed: `Authorization` in `header`
+> A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.
+> 
+> To obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).
+
 ## v2023.6.1
 
 No API updates.
