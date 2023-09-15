@@ -1,3 +1,16 @@
+## v2023.9.0
+
+#### What's Changed
+
+##### `POST` /api/v2/steps
+
+###### Request:
+
+Changed content type : `application/json`
+
+* Changed property `assignableUserType` (string)
+    > Indicates which users are allowed to be assigned this step on a record (defaults to APP_USERS)
+
 ## v2023.8.1
 
 #### What's New

@@ -7,12 +7,20 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2023.8.1"
+    "version": "v2023.9.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
     "url": "https://www.logicgate.com/developer/"
   },
+  "security": [
+    {
+      "bearer": []
+    },
+    {
+      "basic": []
+    }
+  ],
   "tags": [
     {
       "name": "Authentication",
@@ -513,7 +521,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "basic": []
+          }
+        ]
       }
     },
     "/api/v2/workflows/{id}": {
@@ -1370,8 +1383,8 @@
           },
           "assignableUserType": {
             "type": "string",
-            "description": "Indicates which users are allowed to be assigned this step on a record (defaults to APP_AND_EXTERNAL_USERS)",
-            "example": "APP_AND_EXTERNAL_USERS",
+            "description": "Indicates which users are allowed to be assigned this step on a record (defaults to APP_USERS)",
+            "example": "APP_USERS",
             "enum": [
               "APP_AND_EXTERNAL_USERS",
               "APP_USERS",
@@ -1430,7 +1443,7 @@
           "assignableUserType": {
             "type": "string",
             "description": "Indicates which users are allowed to be assigned this step on a record",
-            "example": "APP_AND_EXTERNAL_USERS",
+            "example": "APP_USERS",
             "enum": [
               "APP_AND_EXTERNAL_USERS",
               "APP_USERS",
@@ -1798,7 +1811,7 @@
           "assignableUserType": {
             "type": "string",
             "description": "Indicates which users are allowed to be assigned this step on a record",
-            "example": "APP_AND_EXTERNAL_USERS",
+            "example": "APP_USERS",
             "enum": [
               "APP_AND_EXTERNAL_USERS",
               "APP_USERS",
@@ -2293,6 +2306,18 @@
             "type": "string"
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "API Token"
+      },
+      "basic": {
+        "type": "http",
+        "scheme": "basic",
+        "bearerFormat": "Basic Token"
       }
     }
   }
