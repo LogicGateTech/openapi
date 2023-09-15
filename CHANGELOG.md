@@ -1,3 +1,11 @@
+## v2023.8.1
+
+#### What's New
+
+##### `GET` /api/v2/fields
+
+> Retrieve fields
+
 ## v2023.8.0
 
 No API updates.

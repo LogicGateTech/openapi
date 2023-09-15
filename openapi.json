@@ -1,13 +1,13 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "LogicGate API",
+    "title": "Risk Cloud API",
     "description": "Welcome to the Risk Cloud API v2! This is a collection of new API-first and RESTful API endpoints to streamline the creation of custom integrations with the Risk Cloud.\n\n**Note**: These endpoints are currently in **open alpha**, meaning that backwards compatibility is not guaranteed and breaking changes are to be expected as the endpoints are finalized. The full release of these new v2 endpoints is anticipated for late 2023.\n\nFor our existing collections of v1 endpoints, \nplease feel free to reference [Risk Cloud API v1](https://docs.logicgate.com).",
     "contact": {
-      "name": "LogicGate",
-      "email": "support@logicgate.com"
+      "name": "developer-relations@logicgate.com",
+      "email": "developer-relations@logicgate.com"
     },
-    "version": "v2023.8.0"
+    "version": "v2023.8.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -33,6 +33,10 @@
     {
       "name": "Step",
       "description": "A [Step](https://help.logicgate.com/hc/en-us/articles/4402674059668-Create-a-Step) lives in a Workflow and is configured with a set of Sections, Subsections and Fields to create a form"
+    },
+    {
+      "name": "Field",
+      "description": "A [Field](https://help.logicgate.com/hc/en-us/articles/4402674064020-Create-Fields) is used to capture information from and display information to users in a Workflow"
     }
   ],
   "paths": {
@@ -1051,6 +1055,124 @@
           }
         }
       }
+    },
+    "/api/v2/fields": {
+      "get": {
+        "tags": [
+          "Field"
+        ],
+        "summary": "Retrieve fields",
+        "description": "**Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)\n\nRetrieve a page of all fields whose parent application the current user has [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.",
+        "operationId": "readAllFields",
+        "parameters": [
+          {
+            "name": "application-id",
+            "in": "query",
+            "description": "The unique ID of an application where, if provided, the response will only contain fields from the identified application",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "example": "a1b2c3d4"
+          },
+          {
+            "name": "workflow-id",
+            "in": "query",
+            "description": "The unique ID of a workflow where, if provided, the response will only contain fields from the identified workflow",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "example": "a1b2c3d4"
+          },
+          {
+            "name": "step-id",
+            "in": "query",
+            "description": "The unique ID of a step where, if provided, the response will only contain fields from the identified step",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "example": "a1b2c3d4"
+          },
+          {
+            "name": "field-type",
+            "in": "query",
+            "description": "A field type where, if provided, the response will only contain fields of the identified field type",
+            "required": false,
+            "schema": {
+              "title": "Field Type (Filter)",
+              "type": "string",
+              "enum": [
+                "DATE",
+                "USER",
+                "EXTERNAL_USER",
+                "TEXT",
+                "TEXT_AREA",
+                "NUMBER",
+                "E_SIGNATURE",
+                "CHECKBOX",
+                "MULTI_SELECT",
+                "RADIO",
+                "SELECT",
+                "ATTACHMENT",
+                "CALCULATION",
+                "DATE_CALCULATION"
+              ]
+            },
+            "example": "SELECT"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 20
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageModelOutFieldApiOut"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1911,6 +2033,233 @@
             "$ref": "#/components/schemas/PageInfoOut"
           }
         }
+      },
+      "ApplicationPropertyApiOut": {
+        "title": "Application (Property)",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the application",
+            "example": "Cyber Risk Management Application"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of Risk Cloud application",
+            "example": "CONTROLS_COMPLIANCE",
+            "enum": [
+              "ACCESS_MANAGEMENT",
+              "AML_KYC",
+              "ASSET_MANAGEMENT",
+              "AUDIT_MANAGEMENT",
+              "BUSINESS_CONTINUITY_PLANNING",
+              "CHANGE_MANAGEMENT",
+              "COMPLAINT_MANAGEMENT",
+              "COMPLIANCE_MANAGEMENT",
+              "CONTRACT_MANAGEMENT",
+              "CONTROLS_COMPLIANCE",
+              "CONTROLS_MANAGEMENT",
+              "CRISIS_MANAGEMENT",
+              "CUSTOM",
+              "CUSTOM_GRC_USE_CASE",
+              "CYBER_RISK_MANAGEMENT",
+              "DATA_PRIVACY_MANAGEMENT",
+              "EMPLOYEE_COMPLIANCE",
+              "ENTERPRISE_RISK_MANAGEMENT",
+              "ESG",
+              "INCIDENT_MANAGEMENT",
+              "INTERNAL_AUDIT_MANAGEMENT",
+              "IT_RISK_MANAGEMENT",
+              "NONE",
+              "OPERATIONAL_RESILIENCY",
+              "OTHER",
+              "POLICY_AND_PROCEDURE_MANAGEMENT",
+              "POLICY_MANAGEMENT",
+              "PRIVACY_MANAGEMENT",
+              "QUANTIFY",
+              "REGULATORY_COMPLIANCE",
+              "REPOSITORY",
+              "RISK_QUANTIFICATION",
+              "SOX_TESTING",
+              "STANDARDS_REGULATIONS",
+              "SURVEY",
+              "THIRD_PARTY_RISK_MANAGEMENT"
+            ]
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "application"
+          }
+        },
+        "description": "The parent application of the field, or null for global fields"
+      },
+      "FieldApiOut": {
+        "title": "Field (Response)",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the field",
+            "example": "Risk Severity"
+          },
+          "application": {
+            "$ref": "#/components/schemas/ApplicationPropertyApiOut"
+          },
+          "workflow": {
+            "$ref": "#/components/schemas/WorkflowPropertyApiOut"
+          },
+          "label": {
+            "type": "string",
+            "description": "The label of the field as shown on the record",
+            "example": "Enter the Risk Severity based on your assessment"
+          },
+          "global": {
+            "type": "boolean",
+            "description": "Whether the field is global",
+            "example": false
+          },
+          "tooltip": {
+            "type": "string",
+            "description": "The tooltip information of the field",
+            "example": "Select the Risk Severity"
+          },
+          "helpText": {
+            "type": "string",
+            "description": "The help text of the field to supply necessary context for filling out the field",
+            "example": "Determine the Risk Severity from your assessment"
+          },
+          "type": {
+            "title": "Field Type",
+            "type": "string",
+            "description": "The type of the field",
+            "example": "SELECT",
+            "enum": [
+              "DATE",
+              "USER",
+              "EXTERNAL_USER",
+              "TEXT",
+              "TEXT_AREA",
+              "NUMBER",
+              "E_SIGNATURE",
+              "CHECKBOX",
+              "MULTI_SELECT",
+              "RADIO",
+              "SELECT",
+              "ATTACHMENT",
+              "CALCULATION",
+              "DATE_CALCULATION",
+              "OTHER"
+            ]
+          },
+          "valueType": {
+            "type": "string",
+            "description": "The type of the field value",
+            "example": "OPTION",
+            "enum": [
+              "NUMBER",
+              "CALCULATION",
+              "ATTACHMENT",
+              "DATE",
+              "OPTION",
+              "USER",
+              "TEXT",
+              "OTHER"
+            ]
+          },
+          "optionValues": {
+            "type": "array",
+            "description": "The option values of the field for Select, Multi-Select, Radio, Checkbox, and E-Signature field types",
+            "items": {
+              "$ref": "#/components/schemas/ValuePropertyApiOut"
+            }
+          },
+          "defaultValues": {
+            "type": "array",
+            "description": "The default values of the field",
+            "items": {
+              "$ref": "#/components/schemas/ValuePropertyApiOut"
+            }
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "field"
+          }
+        },
+        "description": "A array of returned items"
+      },
+      "PageModelOutFieldApiOut": {
+        "title": "Page (Response)",
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "description": "A array of returned items",
+            "items": {
+              "$ref": "#/components/schemas/FieldApiOut"
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/PageLinksOut"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageInfoOut"
+          }
+        }
+      },
+      "ValuePropertyApiOut": {
+        "title": "Value (Property)",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the value",
+            "example": "OPTION",
+            "enum": [
+              "NUMBER",
+              "CALCULATION",
+              "ATTACHMENT",
+              "DATE",
+              "OPTION",
+              "USER",
+              "TEXT",
+              "OTHER"
+            ]
+          },
+          "textValue": {
+            "type": "string",
+            "description": "The text representation of the record value, with the format varying by value type:\n- `NUMBER`: a string representation of the number, with currency if specified on the field (example: `\"42\"`)\n- `CALCULATION`: a string representation of the label if specified on the field, otherwise the number (example: `\"Highest Risk\"`)\n- `ATTACHMENT`: the name of the attachment file (example: `\"my-evidence.pdf\"`)\n- `DATE`: the date formatted according to the requesting user's settings (example: `\"1/1/23, 12:00 PM\"`)\n- `OPTION`: the text value of the option (example: `\"Medium Risk\"`)\n- `USER`: the full name and email of the user (example: `\"First Last (first.last@example.com)\"`)\n- `TEXT`: the text value (example: `\"Data Theft\"`)",
+            "example": "Medium Risk"
+          },
+          "numericValue": {
+            "type": "number",
+            "description": "The numeric representation of the record value, with the format varying by value type:\n- `NUMBER`: the numeric value of the number (example: `42.0`)\n- `CALCULATION`: the numeric value of the calculation (example: `42.0`)\n- `ATTACHMENT`: the version count of the attachment (example: `2.0`)\n- `DATE`: the date measured in milliseconds since the Unix epoch (example: `1672552800000.0`)\n- `OPTION`: the numeric value of the option (example: `2.0`)\n- `USER`: a null value (example: `null`)\n- `TEXT`: a null value (example: `null`)",
+            "format": "double",
+            "example": 2.0
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "value"
+          }
+        },
+        "description": "The default values of the field"
       },
       "PageModelOutApplicationApiOut": {
         "title": "Page (Response)",
