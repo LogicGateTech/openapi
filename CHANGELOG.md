@@ -1,3 +1,38 @@
+## v2023.10.0
+
+#### What's New
+
+##### `GET` /api/v2/records
+
+> Retrieve records
+
+#### What's Changed
+
+##### `GET` /api/v2/fields
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `application` (object)
+            > The parent application of the record
+
+        * Changed property `optionValues` (array)
+            > The option values of the field for Select, Multi-Select, Radio, Checkbox, and E-Signature field types
+
+            Changed items (object):
+                > The values of the record field
+
 ## v2023.9.1
 
 No API updates.
