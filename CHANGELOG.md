@@ -1,3 +1,7 @@
+## v2023.10.1
+
+No API updates.
+
 ## v2023.10.0
 
 #### What's New
