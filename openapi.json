@@ -2,12 +2,12 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Risk Cloud API",
-    "description": "Welcome to the Risk Cloud API v2! This is a collection of new API-first and RESTful API endpoints to streamline the creation of custom integrations with the Risk Cloud.\n\n**Note**: These endpoints are currently in **open alpha**, meaning that backwards compatibility is not guaranteed and breaking changes are to be expected as the endpoints are finalized. The full release of these new v2 endpoints is anticipated for late 2023.\n\nFor our existing collections of v1 endpoints, \nplease feel free to reference [Risk Cloud API v1](https://docs.logicgate.com).",
+    "description": "Welcome to the Risk Cloud API v2! This is a collection of new API-first and RESTful API endpoints to streamline the creation of custom integrations with the Risk Cloud.\n\nFor the API documentation of our legacy API v1 endpoints, reference [Risk Cloud API v1](https://docs.logicgate.com/v1/index.html).",
     "contact": {
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2023.11.0"
+    "version": "v2023.12.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -128,7 +128,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "post": {
         "tags": [
@@ -170,7 +171,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       }
     },
     "/api/v2/workflow-maps": {
@@ -238,7 +240,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "post": {
         "tags": [
@@ -280,7 +283,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       }
     },
     "/api/v2/steps": {
@@ -349,7 +353,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "post": {
         "tags": [
@@ -391,7 +396,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       }
     },
     "/api/v2/applications": {
@@ -449,7 +455,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "post": {
         "tags": [
@@ -491,7 +498,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       }
     },
     "/api/v1/account/token": {
@@ -573,7 +581,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "delete": {
         "tags": [
@@ -708,7 +717,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "delete": {
         "tags": [
@@ -749,7 +759,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "patch": {
         "tags": [
@@ -800,7 +811,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       }
     },
     "/api/v2/steps/{id}": {
@@ -843,7 +855,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "delete": {
         "tags": [
@@ -884,7 +897,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "patch": {
         "tags": [
@@ -935,7 +949,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       }
     },
     "/api/v2/applications/{id}": {
@@ -978,7 +993,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "delete": {
         "tags": [
@@ -1019,7 +1035,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       },
       "patch": {
         "tags": [
@@ -1070,7 +1087,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       }
     },
     "/api/v2/records": {
@@ -1172,7 +1190,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       }
     },
     "/api/v2/fields": {
@@ -1290,7 +1309,8 @@
               }
             }
           }
-        }
+        },
+        "x-beta": "true"
       }
     }
   },
