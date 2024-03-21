@@ -7,15 +7,26 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.2.1"
+    "version": "v2024.3.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
     "url": "https://www.logicgate.com/developer/"
   },
+  "servers": [
+    {
+      "url": "https://{env}.logicgate.com",
+      "description": "The LogicGate API application.",
+      "variables": {
+        "env": {
+          "default": "qa"
+        }
+      }
+    }
+  ],
   "security": [
     {
-      "bearer": []
+      "API Token": []
     },
     {
       "basic": []
@@ -31,24 +42,24 @@
       "description": "An [Application](https://help.logicgate.com/hc/en-us/articles/4402674055572-Create-a-new-Application) is a collection of Workflows, Steps, and logic that collectively solve a business use case"
     },
     {
-      "name": "Workflow",
-      "description": "A [Workflow](https://help.logicgate.com/hc/en-us/articles/4402683108756-Create-a-new-Workflow) is a combination of Steps, Paths, Fields, and routing logic that combine to form a system in an Application"
-    },
-    {
-      "name": "Workflow Map",
-      "description": "A [Workflow Map](https://help.logicgate.com/hc/en-us/articles/4402683117588) represents a relationship between two Workflows"
-    },
-    {
-      "name": "Step",
-      "description": "A [Step](https://help.logicgate.com/hc/en-us/articles/4402674059668-Create-a-Step) lives in a Workflow and is configured with a set of Sections, Subsections and Fields to create a form"
-    },
-    {
       "name": "Field",
       "description": "A [Field](https://help.logicgate.com/hc/en-us/articles/4402674064020-Create-Fields) is used to capture information from and display information to users in a Workflow"
     },
     {
       "name": "Record",
       "description": "A [Record](https://help.logicgate.com/hc/en-us/articles/4402683104020-Complete-a-Record) is a form that can capture information, store cataloged data, and link to other Records as it moves through each Step of a Workflow"
+    },
+    {
+      "name": "Step",
+      "description": "A [Step](https://help.logicgate.com/hc/en-us/articles/4402674059668-Create-a-Step) lives in a Workflow and is configured with a set of Sections, Subsections and Fields to create a form"
+    },
+    {
+      "name": "Workflow",
+      "description": "A [Workflow](https://help.logicgate.com/hc/en-us/articles/4402683108756-Create-a-new-Workflow) is a combination of Steps, Paths, Fields, and routing logic that combine to form a system in an Application"
+    },
+    {
+      "name": "Workflow Map",
+      "description": "A [Workflow Map](https://help.logicgate.com/hc/en-us/articles/4402683117588) represents a relationship between two Workflows"
     }
   ],
   "paths": {
@@ -2091,27 +2102,27 @@
           "first": {
             "type": "string",
             "description": "A URL path to the first page of requested data",
-            "example": "/api/v2/resource?page=0&size=20"
+            "example": "/api/v2/resource?page\u003d0\u0026size\u003d20"
           },
           "prev": {
             "type": "string",
             "description": "A URL path to the next page of requested data or `null` if currently on first page",
-            "example": "/api/v2/resource?page=2&size=20"
+            "example": "/api/v2/resource?page\u003d2\u0026size\u003d20"
           },
           "self": {
             "type": "string",
             "description": "A URL path to the current page of requested data",
-            "example": "/api/v2/resource?page=3&size=20"
+            "example": "/api/v2/resource?page\u003d3\u0026size\u003d20"
           },
           "next": {
             "type": "string",
             "description": "A URL link to the next page of requested data or `null` if currently on last page",
-            "example": "/api/v2/resource?page=4&size=20"
+            "example": "/api/v2/resource?page\u003d4\u0026size\u003d20"
           },
           "last": {
             "type": "string",
             "description": "A URL link to the last page of requested data",
-            "example": "/api/v2/resource?page=6&size=20"
+            "example": "/api/v2/resource?page\u003d6\u0026size\u003d20"
           }
         },
         "description": "A collection of page URL links for navigation and iteration"
@@ -2535,7 +2546,7 @@
           },
           "textValue": {
             "type": "string",
-            "description": "The text representation of the record value, with the format varying by value type:\n- `NUMBER`: a string representation of the number, with currency if specified on the field (example: `\"42\"`)\n- `CALCULATION`: a string representation of the label if specified on the field, otherwise the number (example: `\"Highest Risk\"`)\n- `ATTACHMENT`: the name of the attachment file (example: `\"my-evidence.pdf\"`)\n- `DATE`: the date formatted according to the requesting user's settings (example: `\"1/1/23, 12:00 PM\"`)\n- `OPTION`: the text value of the option (example: `\"Medium Risk\"`)\n- `USER`: the full name and email of the user (example: `\"First Last (first.last@example.com)\"`)\n- `TEXT`: the text value (example: `\"Data Theft\"`)",
+            "description": "The text representation of the record value, with the format varying by value type:\n- `NUMBER`: a string representation of the number, with currency if specified on the field (example: `\"42\"`)\n- `CALCULATION`: a string representation of the label if specified on the field, otherwise the number (example: `\"Highest Risk\"`)\n- `ATTACHMENT`: the name of the attachment file (example: `\"my-evidence.pdf\"`)\n- `DATE`: the date formatted according to the requesting user\u0027s settings (example: `\"1/1/23, 12:00 PM\"`)\n- `OPTION`: the text value of the option (example: `\"Medium Risk\"`)\n- `USER`: the full name and email of the user (example: `\"First Last (first.last@example.com)\"`)\n- `TEXT`: the text value (example: `\"Data Theft\"`)",
             "example": "Medium Risk"
           },
           "numericValue": {
@@ -2706,15 +2717,19 @@
       }
     },
     "securitySchemes": {
-      "bearer": {
+      "API Token": {
         "type": "http",
+        "name": "Authorization",
+        "in": "header",
         "scheme": "bearer",
         "bearerFormat": "API Token"
       },
       "basic": {
         "type": "http",
+        "name": "Authorization",
+        "in": "header",
         "scheme": "basic",
-        "bearerFormat": "Basic Token"
+        "bearerFormat": "basic"
       }
     }
   }
