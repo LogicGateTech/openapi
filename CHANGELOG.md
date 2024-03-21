@@ -1,3 +1,7 @@
+## v2024.3.0
+
+Specified auth, servers, and alphabetical order in OpenAPI Specification.
+
 ## v2024.2.1
 
 No API updates.
