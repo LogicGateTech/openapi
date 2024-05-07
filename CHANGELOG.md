@@ -1,3 +1,121 @@
+## v2024.4.0
+
+#### What's Changed
+
+##### `DELETE` /api/v2/workflows/{id}
+
+
+###### Return Type:
+
+New response : **204 No Content**
+> No Content
+Deleted response : **200 OK**
+> OK
+##### `GET` /api/v2/workflows/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `type` (string)
+        > The type of workflow
+
+        Enum values:
+
+        * `WORKFLOW`
+        * `JIRA_WORKFLOW`
+        * `ANALYSIS_WORKFLOW`
+##### `PATCH` /api/v2/workflows/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `type` (string)
+        > The type of workflow
+
+        Enum values:
+
+        * `WORKFLOW`
+        * `JIRA_WORKFLOW`
+        * `ANALYSIS_WORKFLOW`
+##### `DELETE` /api/v2/workflow-maps/{id}
+
+
+###### Return Type:
+
+New response : **204 No Content**
+> No Content
+Deleted response : **200 OK**
+> OK
+##### `DELETE` /api/v2/applications/{id}
+
+
+###### Return Type:
+
+New response : **204 No Content**
+> No Content
+Deleted response : **200 OK**
+> OK
+##### `POST` /api/v2/workflows
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `type` (string)
+        > The type of workflow
+
+        Enum values:
+
+        * `WORKFLOW`
+        * `JIRA_WORKFLOW`
+        * `ANALYSIS_WORKFLOW`
+##### `GET` /api/v2/workflows
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+
+        * Added property `type` (string)
+            > The type of workflow
+
+            Enum values:
+
+            * `WORKFLOW`
+            * `JIRA_WORKFLOW`
+            * `ANALYSIS_WORKFLOW`
+##### `DELETE` /api/v2/steps/{id}
+
+
+###### Return Type:
+
+New response : **204 No Content**
+> No Content
+Deleted response : **200 OK**
+> OK
+
 ## v2024.3.1
 
 No API updates.

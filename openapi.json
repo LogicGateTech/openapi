@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.3.1"
+    "version": "v2024.4.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -624,15 +624,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AppActionResponse"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           }
         }
       },
@@ -760,15 +753,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AppActionResponse"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           }
         },
         "x-beta": "true"
@@ -898,15 +884,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AppActionResponse"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           }
         },
         "x-beta": "true"
@@ -1036,15 +1015,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AppActionResponse"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           }
         },
         "x-beta": "true"
@@ -1403,6 +1375,16 @@
             "description": "The y-coordinate of the workflow in the application builder",
             "format": "int32",
             "example": 20
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of workflow",
+            "example": "WORKFLOW",
+            "enum": [
+              "WORKFLOW",
+              "JIRA_WORKFLOW",
+              "ANALYSIS_WORKFLOW"
+            ]
           },
           "object": {
             "type": "string",
@@ -2698,20 +2680,6 @@
           },
           "page": {
             "$ref": "#/components/schemas/PageInfoOut"
-          }
-        }
-      },
-      "AppActionResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string"
-          },
-          "action": {
-            "type": "string"
           }
         }
       }
