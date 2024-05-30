@@ -1,3 +1,75 @@
+## v2024.5.1
+
+#### What's New
+
+##### `GET` /api/v2/records/{id}/linked
+
+> Retrieve all linked records
+
+#### What's Changed
+
+##### `GET` /api/v2/fields
+
+
+###### Parameters:
+
+Changed: `field-type` in `query`
+> A field type where, if provided, the response will only contain fields of the identified field type
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `type` (string)
+            > The type of the field
+
+            Added enum value:
+
+            * `TEXT_CONCATENATION`
+            Removed enum value:
+
+            * `TEXT_CALCULATION`
+##### `GET` /api/v2/records
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `fields` (array)
+            > The fields and values of the record
+
+            Changed items (object):
+                > The fields and values of the record
+
+            * Changed property `type` (string)
+                > The type of the field
+
+                Added enum value:
+
+                * `TEXT_CONCATENATION`
+                Removed enum value:
+
+                * `TEXT_CALCULATION`
+
 ## v2024.5.0
 
 No API updates.
