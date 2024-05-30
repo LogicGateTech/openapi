@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.4.0"
+    "version": "v2024.4.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -1241,6 +1241,7 @@
                 "SELECT",
                 "ATTACHMENT",
                 "CALCULATION",
+                "TEXT_CALCULATION",
                 "DATE_CALCULATION"
               ]
             },
@@ -2274,6 +2275,7 @@
               "SELECT",
               "ATTACHMENT",
               "CALCULATION",
+              "TEXT_CALCULATION",
               "DATE_CALCULATION",
               "OTHER"
             ]
@@ -2604,6 +2606,7 @@
               "SELECT",
               "ATTACHMENT",
               "CALCULATION",
+              "TEXT_CALCULATION",
               "DATE_CALCULATION",
               "OTHER"
             ]
