@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.5.0"
+    "version": "v2024.5.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -1177,6 +1177,108 @@
         "x-beta": "true"
       }
     },
+    "/api/v2/records/{id}/linked": {
+      "get": {
+        "tags": [
+          "Record"
+        ],
+        "summary": "Retrieve all linked records",
+        "description": "**Permissions:** [Read or Write access](https://help.logicgate.com/hc/en-us/articles/4402683227156-Permission-Sets-)\n\nRetrieve a page of all records that are linked to the record of the given record ID that the current user has [Read or Write access](https://help.logicgate.com/hc/en-us/articles/4402683227156-Permission-Sets-) to. The maximum depth of linked records to return with regards to the relationship between the records can be specified by the `depth` property, which defaults to 10.\n\nThis endpoint reflects the functionality of [Relationship Reports](https://help.logicgate.com/hc/en-us/articles/4402683133972-Display-Data-using-Relationship-Reports-) in the Risk Cloud.",
+        "operationId": "readAllLinkedRecords",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the record",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "workflow-id",
+            "in": "query",
+            "description": "The unique ID of a workflow where, if provided, the response will only contain linked records from the identified workflow",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "a1b2c3d4"
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "description": "Specifies the maximum depth of linked records to return with regards to the relationship between the given record\u0027s workflow and the workflow specified by `workflow-id` (must not be less than 0, defaults to 10)",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            },
+            "example": 10
+          },
+          {
+            "name": "updated-min",
+            "in": "query",
+            "description": "A timestamp measured in milliseconds since the Unix epoch where, if provided, the response will only contain records that have been modified since the given timestamp",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1672552800000
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 20
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageModelOutRecordApiOut"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      }
+    },
     "/api/v2/fields": {
       "get": {
         "tags": [
@@ -1241,7 +1343,7 @@
                 "SELECT",
                 "ATTACHMENT",
                 "CALCULATION",
-                "TEXT_CALCULATION",
+                "TEXT_CONCATENATION",
                 "DATE_CALCULATION"
               ]
             },
@@ -2275,7 +2377,7 @@
               "SELECT",
               "ATTACHMENT",
               "CALCULATION",
-              "TEXT_CALCULATION",
+              "TEXT_CONCATENATION",
               "DATE_CALCULATION",
               "OTHER"
             ]
@@ -2606,7 +2708,7 @@
               "SELECT",
               "ATTACHMENT",
               "CALCULATION",
-              "TEXT_CALCULATION",
+              "TEXT_CONCATENATION",
               "DATE_CALCULATION",
               "OTHER"
             ]
