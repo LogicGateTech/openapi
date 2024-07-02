@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.5.1"
+    "version": "v2024.6.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -1169,6 +1169,50 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageModelOutRecordApiOut"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      }
+    },
+    "/api/v2/records/{id}": {
+      "get": {
+        "tags": [
+          "Record"
+        ],
+        "summary": "Retrieve a record",
+        "description": "**Permissions:** [Read or Write access](https://help.logicgate.com/hc/en-us/articles/4402683227156-Permission-Sets-)\n\nRetrieve a record specified by the ID in the URL path.",
+        "operationId": "readRecord",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the record",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordApiOut"
                 }
               }
             }
