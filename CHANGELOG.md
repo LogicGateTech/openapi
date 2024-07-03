@@ -1,3 +1,11 @@
+## v2024.6.1
+
+#### What's New
+
+##### `GET` /api/v2/records/{id}
+
+> Retrieve a record
+
 ## v2024.6.0
 
 No API updates.
