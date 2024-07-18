@@ -1,3 +1,7 @@
+## v2024.7.0
+
+No API updates.
+
 ## v2024.6.1
 
 #### What's New
