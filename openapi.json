@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.7.0"
+    "version": "v2024.7.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -1394,6 +1394,23 @@
             "example": "SELECT"
           },
           {
+            "name": "scope",
+            "in": "query",
+            "description": "A scope where, if provided, the response will only contain fields that have either global or workflow scopes (defaults to ALL)",
+            "required": false,
+            "schema": {
+              "title": "Field Scope (Filter)",
+              "type": "string",
+              "default": "ALL",
+              "enum": [
+                "ALL",
+                "GLOBAL",
+                "WORKFLOW"
+              ]
+            },
+            "example": "GLOBAL"
+          },
+          {
             "name": "page",
             "in": "query",
             "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
@@ -1770,6 +1787,11 @@
             "description": "The name of the application",
             "example": "Cyber Risk Management Application"
           },
+          "description": {
+            "type": "string",
+            "description": "The description of the application",
+            "example": "Cyber Risk Management Description Text"
+          },
           "color": {
             "type": "string",
             "description": "The hex representation of the icon color of the application (defaults to #00a3de)",
@@ -1865,6 +1887,11 @@
             "type": "string",
             "description": "The name of the application",
             "example": "Cyber Risk Management Application"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the application",
+            "example": "Cyber Risk Management Description Text"
           },
           "color": {
             "type": "string",
@@ -2100,6 +2127,11 @@
             "type": "string",
             "description": "The name of the application",
             "example": "Cyber Risk Management Application"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the application",
+            "example": "Cyber Risk Management Description Text"
           },
           "color": {
             "type": "string",
