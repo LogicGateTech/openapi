@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.7.1"
+    "version": "v2024.8.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -1477,6 +1477,11 @@
             "description": "The name of the workflow",
             "example": "Risk Assessments"
           },
+          "description": {
+            "type": "string",
+            "description": "The description of the workflow",
+            "example": "Risk Assessment Description Text"
+          },
           "recordPrefix": {
             "type": "string",
             "description": "The prefix to be used in the name of every record created from this workflow",
@@ -1517,6 +1522,11 @@
             "type": "string",
             "description": "The name of the workflow",
             "example": "Risk Assessments"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the workflow",
+            "example": "Risk Assessment Description Text"
           },
           "recordPrefix": {
             "type": "string",
@@ -2021,6 +2031,11 @@
             "type": "string",
             "description": "The name of the workflow",
             "example": "Risk Assessments"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the workflow",
+            "example": "Risk Assessment Description Text"
           },
           "recordPrefix": {
             "type": "string",
