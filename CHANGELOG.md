@@ -1,3 +1,78 @@
+## v2024.8.0
+
+#### What's Changed
+
+##### `GET` /api/v2/workflows/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `description` (string)
+        > The description of the workflow
+
+##### `PATCH` /api/v2/workflows/{id}
+
+
+###### Request:
+
+Changed content type : `application/json`
+
+* Added property `description` (string)
+    > The description of the workflow
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `description` (string)
+        > The description of the workflow
+
+##### `POST` /api/v2/workflows
+
+
+###### Request:
+
+Changed content type : `application/json`
+
+* Added property `description` (string)
+    > The description of the workflow
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `description` (string)
+        > The description of the workflow
+
+##### `GET` /api/v2/workflows
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+
+        * Added property `description` (string)
+            > The description of the workflow
+
 ## 2024.7.1
 
 No API updates.
