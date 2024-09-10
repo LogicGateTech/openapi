@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.8.1"
+    "version": "v2024.9.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -1557,6 +1557,7 @@
             "enum": [
               "WORKFLOW",
               "JIRA_WORKFLOW",
+              "CONTROL_WORKFLOW",
               "ANALYSIS_WORKFLOW"
             ]
           },
@@ -2469,6 +2470,7 @@
               "ATTACHMENT",
               "CALCULATION",
               "TEXT_CONCATENATION",
+              "LINKED_RECORDS_CALCULATION",
               "DATE_CALCULATION",
               "OTHER"
             ]
@@ -2800,6 +2802,7 @@
               "ATTACHMENT",
               "CALCULATION",
               "TEXT_CONCATENATION",
+              "LINKED_RECORDS_CALCULATION",
               "DATE_CALCULATION",
               "OTHER"
             ]

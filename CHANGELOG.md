@@ -1,3 +1,177 @@
+## v2024.9.0
+
+#### What's Changed
+
+##### `GET` /api/v2/workflows/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `type` (string)
+        > The type of workflow
+
+        Added enum value:
+
+        * `CONTROL_WORKFLOW`
+##### `PATCH` /api/v2/workflows/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `type` (string)
+        > The type of workflow
+
+        Added enum value:
+
+        * `CONTROL_WORKFLOW`
+##### `POST` /api/v2/workflows
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `type` (string)
+        > The type of workflow
+
+        Added enum value:
+
+        * `CONTROL_WORKFLOW`
+##### `GET` /api/v2/workflows
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+
+        * Changed property `type` (string)
+            > The type of workflow
+
+            Added enum value:
+
+            * `CONTROL_WORKFLOW`
+##### `GET` /api/v2/records/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `fields` (array)
+        > The fields and values of the record
+
+        Changed items (object):
+            > The fields and values of the record
+
+        * Changed property `type` (string)
+            > The type of the field
+
+            Added enum value:
+
+            * `LINKED_RECORDS_CALCULATION`
+##### `GET` /api/v2/fields
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `type` (string)
+            > The type of the field
+
+            Added enum value:
+
+            * `LINKED_RECORDS_CALCULATION`
+##### `GET` /api/v2/records
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `fields` (array)
+            > The fields and values of the record
+
+            Changed items (object):
+                > The fields and values of the record
+
+            * Changed property `type` (string)
+                > The type of the field
+
+                Added enum value:
+
+                * `LINKED_RECORDS_CALCULATION`
+##### `GET` /api/v2/records/{id}/linked
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `fields` (array)
+            > The fields and values of the record
+
+            Changed items (object):
+                > The fields and values of the record
+
+            * Changed property `type` (string)
+                > The type of the field
+
+                Added enum value:
+
+                * `LINKED_RECORDS_CALCULATION`
+
 ## v2024.8.1
 
 No API updates.
