@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.9.1"
+    "version": "v2024.9.2"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -2489,6 +2489,11 @@
               "TEXT",
               "OTHER"
             ]
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the field is required for the current step",
+            "example": false
           },
           "values": {
             "type": "array",

@@ -1,3 +1,76 @@
+## v2024.9.2
+
+#### What's Changed
+
+##### `GET` /api/v2/records/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `fields` (array)
+        > The fields and values of the record
+
+        Changed items (object):
+            > The fields and values of the record
+
+        * Added property `required` (boolean)
+            > Whether the field is required for the current step
+
+##### `GET` /api/v2/records
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `fields` (array)
+            > The fields and values of the record
+
+            Changed items (object):
+                > The fields and values of the record
+
+            * Added property `required` (boolean)
+                > Whether the field is required for the current step
+
+##### `GET` /api/v2/records/{id}/linked
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `fields` (array)
+            > The fields and values of the record
+
+            Changed items (object):
+                > The fields and values of the record
+
+            * Added property `required` (boolean)
+                > Whether the field is required for the current step
+
 ## v2024.9.1
 
 No API updates.
