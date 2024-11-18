@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.9.2"
+    "version": "v2024.10.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -2470,7 +2470,7 @@
               "ATTACHMENT",
               "CALCULATION",
               "TEXT_CONCATENATION",
-              "LINKED_RECORDS_CALCULATION",
+              "LINKED_RECORDS_COUNT",
               "DATE_CALCULATION",
               "OTHER"
             ]
@@ -2807,7 +2807,7 @@
               "ATTACHMENT",
               "CALCULATION",
               "TEXT_CONCATENATION",
-              "LINKED_RECORDS_CALCULATION",
+              "LINKED_RECORDS_COUNT",
               "DATE_CALCULATION",
               "OTHER"
             ]
