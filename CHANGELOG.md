@@ -1,3 +1,86 @@
+## v2024.12.0
+
+#### What's Changed
+
+##### `GET` /api/v2/steps/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `description` (string)
+        > The description of the step
+
+##### `PATCH` /api/v2/steps/{id}
+
+
+###### Request:
+
+Changed content type : `application/json`
+
+* Added property `description` (string)
+    > The description of the step
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `description` (string)
+        > The description of the step
+
+##### `POST` /api/v2/steps
+
+
+###### Request:
+
+Changed content type : `application/json`
+
+* Added property `description` (string)
+    > The description of the step
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `description` (string)
+        > The description of the step
+
+##### `GET` /api/v2/steps
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+
+        * Added property `description` (string)
+            > The description of the step
+
+##### `GET` /api/v2/fields
+
+
+###### Parameters:
+
+Changed: `field-type` in `query`
+> A field type where, if provided, the response will only contain fields of the identified field type
+
 ## v2024.11.1
 
 No API updates.

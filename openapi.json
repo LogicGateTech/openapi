@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2024.11.1"
+    "version": "v2024.12.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -1371,25 +1371,29 @@
             "description": "A field type where, if provided, the response will only contain fields of the identified field type",
             "required": false,
             "schema": {
-              "title": "Field Type (Filter)",
-              "type": "string",
-              "enum": [
-                "DATE",
-                "USER",
-                "EXTERNAL_USER",
-                "TEXT",
-                "TEXT_AREA",
-                "NUMBER",
-                "E_SIGNATURE",
-                "CHECKBOX",
-                "MULTI_SELECT",
-                "RADIO",
-                "SELECT",
-                "ATTACHMENT",
-                "CALCULATION",
-                "TEXT_CONCATENATION",
-                "DATE_CALCULATION"
-              ]
+              "type": "array",
+              "items": {
+                "title": "Field Type (Filter)",
+                "type": "string",
+                "enum": [
+                  "DATE",
+                  "USER",
+                  "EXTERNAL_USER",
+                  "TEXT",
+                  "TEXT_AREA",
+                  "NUMBER",
+                  "E_SIGNATURE",
+                  "CHECKBOX",
+                  "MULTI_SELECT",
+                  "RADIO",
+                  "SELECT",
+                  "ATTACHMENT",
+                  "CALCULATION",
+                  "TEXT_CONCATENATION",
+                  "DATE_CALCULATION"
+                ]
+              },
+              "default": []
             },
             "example": "SELECT"
           },
@@ -1670,6 +1674,11 @@
             "format": "int32",
             "example": 20
           },
+          "description": {
+            "type": "string",
+            "description": "The description of the step",
+            "example": "This is a description of the step"
+          },
           "enableComments": {
             "type": "boolean",
             "description": "Whether comments are displayed on a step (defaults to false)",
@@ -1706,6 +1715,11 @@
             "type": "string",
             "description": "The name of the step",
             "example": "Identify Risk"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the step",
+            "example": "This is a description of the step"
           },
           "xpos": {
             "type": "integer",
@@ -2089,6 +2103,11 @@
             "type": "string",
             "description": "The name of the step",
             "example": "Identify Risk"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the step",
+            "example": "This is a description of the step"
           },
           "xpos": {
             "type": "integer",
