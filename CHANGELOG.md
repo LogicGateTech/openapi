@@ -1,3 +1,7 @@
+## v2025.2.0
+
+No API updates.
+
 ## v2025.1.0
 
 No API updates.
