@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2025.5.0"
+    "version": "v2025.5.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -36,6 +36,10 @@
     {
       "name": "Authentication",
       "description": "Getting Started: How to create an [API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) to begin integrating with the Risk Cloud API"
+    },
+    {
+      "name": "Access Audit",
+      "description": "An Access Audit captures information about access related events such as logins and logouts associated with a user."
     },
     {
       "name": "Application",
@@ -1463,6 +1467,126 @@
         },
         "x-beta": "true"
       }
+    },
+    "/api/v2/audits/access": {
+      "get": {
+        "tags": [
+          "Access Audit"
+        ],
+        "summary": "Retrieve access audits",
+        "description": "**Permissions:** [Productivity Entitlement](https://help.logicgate.com/hc/en-us/articles/4402683139348-Module-Entitlements-for-Roles)\n\nRetrieve a page of all access audits.",
+        "operationId": "readAllAccessAudits",
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "query",
+            "description": "Filter by user ID associated with the access audit entry.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "a1b2c3d4"
+          },
+          {
+            "name": "user-email",
+            "in": "query",
+            "description": "Filter by email address associated with the access audit entry.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "jane.doe@logicgate.com"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by type of access event (LOGIN, LOGOUT, LOGIN_FAILED, CREDENTIALS_ROLLED, TOKEN_ROLLED).",
+            "required": false,
+            "schema": {
+              "title": "Access Audit Type",
+              "type": "string",
+              "enum": [
+                "LOGIN",
+                "LOGOUT",
+                "LOGIN_FAILED",
+                "CREDENTIALS_ROLLED",
+                "TOKEN_ROLLED",
+                "OTHER"
+              ]
+            },
+            "example": "LOGIN"
+          },
+          {
+            "name": "created-min",
+            "in": "query",
+            "description": "Minimum created timestamp of the access audit in milliseconds since the Unix epoch (inclusive).",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1672552800000
+          },
+          {
+            "name": "created-max",
+            "in": "query",
+            "description": "Maximum created timestamp of the access audit in milliseconds since the Unix epoch (inclusive).",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1672552800000
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 20
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageModelOutAccessAuditApiOut"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      }
     }
   },
   "components": {
@@ -2877,6 +3001,74 @@
             "description": "A array of returned items",
             "items": {
               "$ref": "#/components/schemas/FieldApiOut"
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/PageLinksOut"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageInfoOut"
+          }
+        }
+      },
+      "AccessAuditApiOut": {
+        "title": "Access Audit",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "type": {
+            "title": "Access Audit Type",
+            "type": "string",
+            "description": "The type of access event that was logged, such as LOGIN, LOGOUT, or LOGIN_FAILED.",
+            "example": "LOGIN",
+            "enum": [
+              "LOGIN",
+              "LOGOUT",
+              "LOGIN_FAILED",
+              "CREDENTIALS_ROLLED",
+              "TOKEN_ROLLED",
+              "OTHER"
+            ]
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserPropertyApiOut"
+          },
+          "remoteAddress": {
+            "type": "string",
+            "description": "The remote address or host from which the user attempted to access the system.",
+            "example": "192.168.1.1"
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional context or information about the access event.",
+            "example": "Login succeeded"
+          },
+          "created": {
+            "type": "string",
+            "description": "The created timestamp of the audit measured in milliseconds since the Unix epoch",
+            "format": "date-time"
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "access_audit"
+          }
+        },
+        "description": "A array of returned items"
+      },
+      "PageModelOutAccessAuditApiOut": {
+        "title": "Page (Response)",
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "description": "A array of returned items",
+            "items": {
+              "$ref": "#/components/schemas/AccessAuditApiOut"
             }
           },
           "links": {
