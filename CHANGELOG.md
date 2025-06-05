@@ -1,3 +1,11 @@
+## v2025.5.1
+
+#### What's New
+
+##### `GET` /api/v2/audits/access
+
+> Retrieve access audits
+
 ## c2025.5.0
 
 No API updates.
