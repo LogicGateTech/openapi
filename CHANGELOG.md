@@ -1,3 +1,11 @@
+## v2025.6.1
+
+No API updates.
+
+## v2025.6.0
+
+No API updates.
+
 ## v2025.5.1
 
 #### What's New
@@ -6,7 +14,7 @@
 
 > Retrieve access audits
 
-## c2025.5.0
+## v2025.5.0
 
 No API updates.
 
