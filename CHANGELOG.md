@@ -1,3 +1,26 @@
+## v2025.9.0
+
+#### What's Changed
+
+##### `GET` /api/v2/fields
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Added property `required` (boolean)
+            > Whether the field is required for the current step
+
 ## v2025.8.1
 
 No API updates.
