@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2025.9.2"
+    "version": "v2025.10.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -46,12 +46,20 @@
       "description": "An [Application](https://help.logicgate.com/hc/en-us/articles/4402674055572-Create-a-new-Application) is a collection of Workflows, Steps, and logic that collectively solve a business use case"
     },
     {
+      "name": "Edge Path",
+      "description": "A [Conditional Edge Path](https://help.logicgate.com/hc/en-us/articles/4402683114004-Work-with-Paths#conditional-edge-paths) defines an alternative route that a Record might need to follow if specific conditions are met."
+    },
+    {
       "name": "Field",
       "description": "A [Field](https://help.logicgate.com/hc/en-us/articles/4402674064020-Create-Fields) is used to capture information from and display information to users in a Workflow"
     },
     {
       "name": "Record",
       "description": "A [Record](https://help.logicgate.com/hc/en-us/articles/4402683104020-Complete-a-Record) is a form that can capture information, store cataloged data, and link to other Records as it moves through each Step of a Workflow"
+    },
+    {
+      "name": "Redirect Path",
+      "description": "A [Redirect Path](https://help.logicgate.com/hc/en-us/articles/4402683115156-Selected-Redirects) gives end users access to Redirect a Record to any Step in the Workflow other than the Default Path or any Conditional Edge Paths."
     },
     {
       "name": "Step",
@@ -407,6 +415,202 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StepApiOut"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      }
+    },
+    "/api/v2/paths/redirect": {
+      "get": {
+        "tags": [
+          "Redirect Path"
+        ],
+        "summary": "List all redirect paths",
+        "description": "Get a list of all redirect paths in the environment that are entitled to the current user. Build user privileges are required.",
+        "operationId": "readRedirectPaths",
+        "parameters": [
+          {
+            "name": "step",
+            "in": "query",
+            "description": "Providing a step ID returns paths only to or from the identified step.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "description": "Wrapper for the parameters page, size, and sort. Available sort properties: id.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            },
+            "example": "?page\u003d0\u0026size\u003d10\u0026sort\u003dtarget,DESC"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedirectPathPage"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      },
+      "post": {
+        "tags": [
+          "Redirect Path"
+        ],
+        "summary": "Create a redirect path",
+        "description": "**Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)\n\nCreate a redirect path from a JSON request body.",
+        "operationId": "createRedirectPath",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RedirectApiCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedirectPathApiOut"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      }
+    },
+    "/api/v2/paths/edge": {
+      "get": {
+        "tags": [
+          "Edge Path"
+        ],
+        "summary": "List all conditional edge paths",
+        "description": "Get a list of all conditional edge paths in the environment that are entitled to the current user. Build user privileges are required.",
+        "operationId": "readEdgePaths",
+        "parameters": [
+          {
+            "name": "step",
+            "in": "query",
+            "description": "Providing a step ID returns paths only to or from the identified step.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "description": "Wrapper for the parameters page, size, and sort. Available sort properties: id.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            },
+            "example": "?page\u003d0\u0026size\u003d10\u0026sort\u003dtarget,DESC"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePathPage"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      },
+      "post": {
+        "tags": [
+          "Edge Path"
+        ],
+        "summary": "Create a conditional edge path",
+        "description": "**Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)\n\nCreate a conditional edge path from a JSON request body.",
+        "operationId": "createEdgePath",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EdgeApiCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePathApiOut"
                 }
               }
             }
@@ -939,6 +1143,268 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StepApiOut"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      }
+    },
+    "/api/v2/paths/redirect/{id}": {
+      "get": {
+        "tags": [
+          "Redirect Path"
+        ],
+        "summary": "Retrieve a redirect path",
+        "description": "Find a path by ID. Build user privileges are required.",
+        "operationId": "readRedirectPath",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the redirect path.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedirectPathApiOut"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      },
+      "delete": {
+        "tags": [
+          "Redirect Path"
+        ],
+        "summary": "Delete a redirect path",
+        "description": "Build user privileges are required.",
+        "operationId": "deleteRedirectPath",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the redirect path.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "x-beta": "true"
+      },
+      "patch": {
+        "tags": [
+          "Redirect Path"
+        ],
+        "summary": "Update a redirect path",
+        "description": "User must be entitled to the path in question, meaning they must have build access and be entitled both the source and target steps.",
+        "operationId": "updateRedirectPath",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the redirect path.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PathApiUpdateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedirectPathApiOut"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      }
+    },
+    "/api/v2/paths/edge/{id}": {
+      "get": {
+        "tags": [
+          "Edge Path"
+        ],
+        "summary": "Retrieve a conditional edge path",
+        "description": "Find a path by ID. Build user privileges are required.",
+        "operationId": "readEdgePath",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the conditional edge path.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePathApiOut"
+                }
+              }
+            }
+          }
+        },
+        "x-beta": "true"
+      },
+      "delete": {
+        "tags": [
+          "Edge Path"
+        ],
+        "summary": "Delete a conditional edge path",
+        "description": "Build user privileges are required.",
+        "operationId": "deleteEdgePath",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the conditional edge path.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "x-beta": "true"
+      },
+      "patch": {
+        "tags": [
+          "Edge Path"
+        ],
+        "summary": "Update a conditional edge path",
+        "description": "User must be entitled to the path in question, meaning they must have build access and be entitled both the source and target steps.",
+        "operationId": "updateEdgePath",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the conditional edge path.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EdgePathApiUpdateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePathApiOut"
                 }
               }
             }
@@ -1924,6 +2390,506 @@
         },
         "description": "The parent workflow of the step"
       },
+      "RedirectApiCreateIn": {
+        "title": "Redirect path (Create).",
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The ID of the source step.",
+            "example": "a1b2c3d4"
+          },
+          "to": {
+            "type": "string",
+            "description": "The ID of the destination step.",
+            "example": "a1b2c3d4"
+          },
+          "allowInternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to any user with access to the target step on submission.",
+            "example": false
+          },
+          "allowExternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to external email addresses on submission.",
+            "example": false
+          },
+          "allowCurrentAssignee": {
+            "type": "boolean",
+            "description": "Allow a step\u0027s current assignee to submit without assigning",
+            "example": false
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the path.",
+            "example": "This describes the path."
+          },
+          "requireAssignee": {
+            "type": "boolean",
+            "description": "Require an assignee to be chosen",
+            "example": false
+          }
+        },
+        "description": "Redirect path (Create)."
+      },
+      "RedirectPathApiOut": {
+        "title": "Path (Response).",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "from": {
+            "type": "string",
+            "description": "The ID of the source step.",
+            "example": "a1b2c3d4"
+          },
+          "to": {
+            "type": "string",
+            "description": "The ID of the destination step.",
+            "example": "a1b2c3d4"
+          },
+          "allowInternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to any user with access to the target step on submission.",
+            "example": false
+          },
+          "allowExternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to external email addresses on submission.",
+            "example": false
+          },
+          "allowCurrentAssignee": {
+            "type": "boolean",
+            "description": "Allow a step\u0027s current assignee to submit without assigning",
+            "example": false
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the path.",
+            "example": "This describes the path."
+          },
+          "requireAssignee": {
+            "type": "boolean",
+            "description": "Require an assignee to be chosen",
+            "example": false
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "redirect-path"
+          }
+        }
+      },
+      "EdgeApiCreateIn": {
+        "title": "Conditional edge path (Create).",
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The ID of the source step.",
+            "example": "a1b2c3d4"
+          },
+          "to": {
+            "type": "string",
+            "description": "The ID of the destination step.",
+            "example": "a1b2c3d4"
+          },
+          "allowInternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to any user with access to the target step on submission.",
+            "example": false
+          },
+          "allowExternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to external email addresses on submission.",
+            "example": false
+          },
+          "allowCurrentAssignee": {
+            "type": "boolean",
+            "description": "Allow a step\u0027s current assignee to submit without assigning",
+            "example": false
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the path.",
+            "example": "This describes the path."
+          },
+          "requireAssignee": {
+            "type": "boolean",
+            "description": "Require an assignee to be chosen",
+            "example": false
+          },
+          "operator": {
+            "type": "string",
+            "description": "Type of operator for an edge path.",
+            "example": "EQUALS",
+            "enum": [
+              "EQUALS",
+              "NOT_EQUALS",
+              "IS",
+              "IS_NOT",
+              "GREATER_THAN",
+              "GREATER_THAN_EQUALS",
+              "LESS_THAN",
+              "LESS_THAN_EQUALS",
+              "CONTAINS",
+              "DOES_NOT_CONTAIN",
+              "NULL",
+              "NOT_NULL",
+              "DATE_RANGE",
+              "NUMERIC_RANGE"
+            ]
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Determines which edge path should be invoked first. Priority is in descending order with 0 being the first edge.",
+            "format": "int32",
+            "example": 0
+          },
+          "field": {
+            "type": "string",
+            "description": "Field that is to be evaluated for the edge.",
+            "example": "a1b2c3d4"
+          },
+          "option": {
+            "$ref": "#/components/schemas/FieldOptionCreateIn"
+          }
+        },
+        "description": "Conditional edge path (Create)."
+      },
+      "FieldOptionCreateIn": {
+        "title": "Field (Create)",
+        "type": "object",
+        "properties": {
+          "textValue": {
+            "type": "string",
+            "description": "The text representation of the record value, with the format varying by value type:\n- `NUMBER`: a string representation of the number, with currency if specified on the field (example: `\"42\"`)\n- `CALCULATION`: a string representation of the label if specified on the field, otherwise the number (example: `\"Highest Risk\"`)\n- `ATTACHMENT`: the name of the attachment file (example: `\"my-evidence.pdf\"`)\n- `DATE`: the date formatted according to the requesting user\u0027s settings (example: `\"1/1/23, 12:00 PM\"`)\n- `OPTION`: the text value of the option (example: `\"Medium Risk\"`)\n- `USER`: the full name and email of the user (example: `\"First Last (first.last@example.com)\"`)\n- `TEXT`: the text value (example: `\"Data Theft\"`)",
+            "example": "Medium Risk"
+          },
+          "numericValue": {
+            "type": "number",
+            "description": "The numeric representation of the record value, with the format varying by value type:\n- `NUMBER`: the numeric value of the number (example: `42.0`)\n- `CALCULATION`: the numeric value of the calculation (example: `42.0`)\n- `ATTACHMENT`: the version count of the attachment (example: `2.0`)\n- `DATE`: the date measured in milliseconds since the Unix epoch (example: `1672552800000.0`)\n- `OPTION`: the numeric value of the option (example: `2.0`)\n- `USER`: a null value (example: `null`)\n- `TEXT`: a null value (example: `null`)",
+            "format": "double",
+            "example": 2.0
+          }
+        },
+        "description": "Value to be compared against."
+      },
+      "ApplicationPropertyApiOut": {
+        "title": "Application (Property)",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the application",
+            "example": "Cyber Risk Management Application"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of Risk Cloud application",
+            "example": "CONTROLS_COMPLIANCE",
+            "enum": [
+              "ACCESS_MANAGEMENT",
+              "AML_KYC",
+              "ASSET_MANAGEMENT",
+              "AUDIT_MANAGEMENT",
+              "BUSINESS_CONTINUITY_PLANNING",
+              "CHANGE_MANAGEMENT",
+              "COMPLAINT_MANAGEMENT",
+              "COMPLIANCE_MANAGEMENT",
+              "CONTRACT_MANAGEMENT",
+              "CONTROLS_COMPLIANCE",
+              "CONTROLS_MANAGEMENT",
+              "CRISIS_MANAGEMENT",
+              "CUSTOM",
+              "CUSTOM_GRC_USE_CASE",
+              "CYBER_RISK_MANAGEMENT",
+              "DATA_PRIVACY_MANAGEMENT",
+              "EMPLOYEE_COMPLIANCE",
+              "ENTERPRISE_RISK_MANAGEMENT",
+              "ESG",
+              "INCIDENT_MANAGEMENT",
+              "INTERNAL_AUDIT_MANAGEMENT",
+              "IT_RISK_MANAGEMENT",
+              "NONE",
+              "OPERATIONAL_RESILIENCY",
+              "OTHER",
+              "POLICY_AND_PROCEDURE_MANAGEMENT",
+              "POLICY_MANAGEMENT",
+              "PRIVACY_MANAGEMENT",
+              "QUANTIFY",
+              "REGULATORY_COMPLIANCE",
+              "REPOSITORY",
+              "RISK_QUANTIFICATION",
+              "SOX_TESTING",
+              "STANDARDS_REGULATIONS",
+              "SURVEY",
+              "THIRD_PARTY_RISK_MANAGEMENT"
+            ]
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "application"
+          }
+        },
+        "description": "The parent application of the field, or null for global fields"
+      },
+      "EdgePathApiOut": {
+        "title": "Path (Response).",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "from": {
+            "type": "string",
+            "description": "The ID of the source step.",
+            "example": "a1b2c3d4"
+          },
+          "to": {
+            "type": "string",
+            "description": "The ID of the destination step.",
+            "example": "a1b2c3d4"
+          },
+          "allowInternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to any user with access to the target step on submission.",
+            "example": false
+          },
+          "allowExternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to external email addresses on submission.",
+            "example": false
+          },
+          "allowCurrentAssignee": {
+            "type": "boolean",
+            "description": "Allow a step\u0027s current assignee to submit without assigning",
+            "example": false
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the path.",
+            "example": "This describes the path."
+          },
+          "requireAssignee": {
+            "type": "boolean",
+            "description": "Require an assignee to be chosen",
+            "example": false
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "edge-path"
+          },
+          "operator": {
+            "type": "string",
+            "description": "Type of operator for an edge path.",
+            "example": "EQUALS",
+            "enum": [
+              "EQUALS",
+              "NOT_EQUALS",
+              "IS",
+              "IS_NOT",
+              "GREATER_THAN",
+              "GREATER_THAN_EQUALS",
+              "LESS_THAN",
+              "LESS_THAN_EQUALS",
+              "CONTAINS",
+              "DOES_NOT_CONTAIN",
+              "NULL",
+              "NOT_NULL",
+              "DATE_RANGE",
+              "NUMERIC_RANGE"
+            ]
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Determines which edge path should be invoked first. Priority is in descending order with 0 being the first edge.",
+            "format": "int32",
+            "example": 0
+          },
+          "field": {
+            "$ref": "#/components/schemas/FieldApiOut"
+          },
+          "option": {
+            "$ref": "#/components/schemas/ValuePropertyApiOut"
+          }
+        }
+      },
+      "FieldApiOut": {
+        "title": "Field (Response)",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the field",
+            "example": "Risk Severity"
+          },
+          "application": {
+            "$ref": "#/components/schemas/ApplicationPropertyApiOut"
+          },
+          "workflow": {
+            "$ref": "#/components/schemas/WorkflowPropertyApiOut"
+          },
+          "label": {
+            "type": "string",
+            "description": "The label of the field as shown on the record",
+            "example": "Enter the Risk Severity based on your assessment"
+          },
+          "global": {
+            "type": "boolean",
+            "description": "Whether the field is global",
+            "example": false
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the field is required for the current step",
+            "example": false
+          },
+          "tooltip": {
+            "type": "string",
+            "description": "The tooltip information of the field",
+            "example": "Select the Risk Severity"
+          },
+          "helpText": {
+            "type": "string",
+            "description": "The help text of the field to supply necessary context for filling out the field",
+            "example": "Determine the Risk Severity from your assessment"
+          },
+          "type": {
+            "title": "Field Type",
+            "type": "string",
+            "description": "The type of the field",
+            "example": "SELECT",
+            "enum": [
+              "DATE",
+              "USER",
+              "EXTERNAL_USER",
+              "TEXT",
+              "TEXT_AREA",
+              "NUMBER",
+              "E_SIGNATURE",
+              "CHECKBOX",
+              "MULTI_SELECT",
+              "RADIO",
+              "SELECT",
+              "ATTACHMENT",
+              "CALCULATION",
+              "TEXT_CONCATENATION",
+              "LINKED_RECORDS_COUNT",
+              "DATE_CALCULATION",
+              "OTHER"
+            ]
+          },
+          "valueType": {
+            "type": "string",
+            "description": "The type of the field value",
+            "example": "OPTION",
+            "enum": [
+              "NUMBER",
+              "CALCULATION",
+              "ATTACHMENT",
+              "DATE",
+              "OPTION",
+              "USER",
+              "TEXT",
+              "OTHER"
+            ]
+          },
+          "optionValues": {
+            "type": "array",
+            "description": "The option values of the field for Select, Multi-Select, Radio, Checkbox, and E-Signature field types",
+            "items": {
+              "$ref": "#/components/schemas/ValuePropertyApiOut"
+            }
+          },
+          "defaultValues": {
+            "type": "array",
+            "description": "The default values of the field",
+            "items": {
+              "$ref": "#/components/schemas/ValuePropertyApiOut"
+            }
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "field"
+          }
+        },
+        "description": "Field that is to be evaluated for the edge."
+      },
+      "ValuePropertyApiOut": {
+        "title": "Value (Property)",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the value",
+            "example": "OPTION",
+            "enum": [
+              "NUMBER",
+              "CALCULATION",
+              "ATTACHMENT",
+              "DATE",
+              "OPTION",
+              "USER",
+              "TEXT",
+              "OTHER"
+            ]
+          },
+          "textValue": {
+            "type": "string",
+            "description": "The text representation of the record value, with the format varying by value type:\n- `NUMBER`: a string representation of the number, with currency if specified on the field (example: `\"42\"`)\n- `CALCULATION`: a string representation of the label if specified on the field, otherwise the number (example: `\"Highest Risk\"`)\n- `ATTACHMENT`: the name of the attachment file (example: `\"my-evidence.pdf\"`)\n- `DATE`: the date formatted according to the requesting user\u0027s settings (example: `\"1/1/23, 12:00 PM\"`)\n- `OPTION`: the text value of the option (example: `\"Medium Risk\"`)\n- `USER`: the full name and email of the user (example: `\"First Last (first.last@example.com)\"`)\n- `TEXT`: the text value (example: `\"Data Theft\"`)",
+            "example": "Medium Risk"
+          },
+          "numericValue": {
+            "type": "number",
+            "description": "The numeric representation of the record value, with the format varying by value type:\n- `NUMBER`: the numeric value of the number (example: `42.0`)\n- `CALCULATION`: the numeric value of the calculation (example: `42.0`)\n- `ATTACHMENT`: the version count of the attachment (example: `2.0`)\n- `DATE`: the date measured in milliseconds since the Unix epoch (example: `1672552800000.0`)\n- `OPTION`: the numeric value of the option (example: `2.0`)\n- `USER`: a null value (example: `null`)\n- `TEXT`: a null value (example: `null`)",
+            "format": "double",
+            "example": 2.0
+          },
+          "aiGenerated": {
+            "type": "boolean",
+            "description": "Whether this value was generated by AI",
+            "example": false
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "value"
+          }
+        },
+        "description": "Value to be compared against."
+      },
       "ApplicationApiCreateIn": {
         "title": "Application (Create)",
         "required": [
@@ -2278,6 +3244,96 @@
         },
         "description": "Step (Update)"
       },
+      "PathApiUpdateIn": {
+        "type": "object",
+        "properties": {
+          "allowInternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to any user with access to the target step on submission.",
+            "example": false
+          },
+          "allowExternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to external email addresses on submission.",
+            "example": false
+          },
+          "allowCurrentAssignee": {
+            "type": "boolean",
+            "description": "Allow a step\u0027s current assignee to submit without assigning",
+            "example": false
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the path.",
+            "example": "This describes the path."
+          },
+          "requireAssignee": {
+            "type": "boolean",
+            "description": "Require an assignee to be chosen",
+            "example": false
+          }
+        },
+        "description": "Redirect path (Update)."
+      },
+      "EdgePathApiUpdateIn": {
+        "title": "Conditional edge path (Update).",
+        "type": "object",
+        "properties": {
+          "allowInternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to any user with access to the target step on submission.",
+            "example": false
+          },
+          "allowExternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to external email addresses on submission.",
+            "example": false
+          },
+          "allowCurrentAssignee": {
+            "type": "boolean",
+            "description": "Allow a step\u0027s current assignee to submit without assigning",
+            "example": false
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the path.",
+            "example": "This describes the path."
+          },
+          "requireAssignee": {
+            "type": "boolean",
+            "description": "Require an assignee to be chosen",
+            "example": false
+          },
+          "operator": {
+            "type": "string",
+            "description": "Type of operator for an edge path.",
+            "example": "EQUALS",
+            "enum": [
+              "EQUALS",
+              "NOT_EQUALS",
+              "IS",
+              "IS_NOT",
+              "GREATER_THAN",
+              "GREATER_THAN_EQUALS",
+              "LESS_THAN",
+              "LESS_THAN_EQUALS",
+              "CONTAINS",
+              "DOES_NOT_CONTAIN",
+              "NULL",
+              "NOT_NULL",
+              "DATE_RANGE",
+              "NUMERIC_RANGE"
+            ]
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Determines which edge path should be invoked first. Priority is in descending order with 0 being the first edge.",
+            "format": "int32",
+            "example": 0
+          }
+        },
+        "description": "Conditional edge path (Update)."
+      },
       "ApplicationApiUpdateIn": {
         "title": "Application (Update)",
         "type": "object",
@@ -2503,71 +3559,6 @@
             "$ref": "#/components/schemas/PageInfoOut"
           }
         }
-      },
-      "ApplicationPropertyApiOut": {
-        "title": "Application (Property)",
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique ID of this Risk Cloud resource",
-            "example": "a1b2c3d4"
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the application",
-            "example": "Cyber Risk Management Application"
-          },
-          "type": {
-            "type": "string",
-            "description": "The type of Risk Cloud application",
-            "example": "CONTROLS_COMPLIANCE",
-            "enum": [
-              "ACCESS_MANAGEMENT",
-              "AML_KYC",
-              "ASSET_MANAGEMENT",
-              "AUDIT_MANAGEMENT",
-              "BUSINESS_CONTINUITY_PLANNING",
-              "CHANGE_MANAGEMENT",
-              "COMPLAINT_MANAGEMENT",
-              "COMPLIANCE_MANAGEMENT",
-              "CONTRACT_MANAGEMENT",
-              "CONTROLS_COMPLIANCE",
-              "CONTROLS_MANAGEMENT",
-              "CRISIS_MANAGEMENT",
-              "CUSTOM",
-              "CUSTOM_GRC_USE_CASE",
-              "CYBER_RISK_MANAGEMENT",
-              "DATA_PRIVACY_MANAGEMENT",
-              "EMPLOYEE_COMPLIANCE",
-              "ENTERPRISE_RISK_MANAGEMENT",
-              "ESG",
-              "INCIDENT_MANAGEMENT",
-              "INTERNAL_AUDIT_MANAGEMENT",
-              "IT_RISK_MANAGEMENT",
-              "NONE",
-              "OPERATIONAL_RESILIENCY",
-              "OTHER",
-              "POLICY_AND_PROCEDURE_MANAGEMENT",
-              "POLICY_MANAGEMENT",
-              "PRIVACY_MANAGEMENT",
-              "QUANTIFY",
-              "REGULATORY_COMPLIANCE",
-              "REPOSITORY",
-              "RISK_QUANTIFICATION",
-              "SOX_TESTING",
-              "STANDARDS_REGULATIONS",
-              "SURVEY",
-              "THIRD_PARTY_RISK_MANAGEMENT"
-            ]
-          },
-          "object": {
-            "type": "string",
-            "description": "Identifies the type of object this data represents",
-            "example": "application"
-          }
-        },
-        "description": "The parent application of the record"
       },
       "FieldRecordApiOut": {
         "title": "Field (Record)",
@@ -2847,160 +3838,137 @@
         },
         "description": "The creator of the record"
       },
-      "ValuePropertyApiOut": {
-        "title": "Value (Property)",
+      "Pageable": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique ID of this Risk Cloud resource",
-            "example": "a1b2c3d4"
+          "offset": {
+            "type": "integer",
+            "format": "int64"
           },
-          "type": {
-            "type": "string",
-            "description": "The type of the value",
-            "example": "OPTION",
-            "enum": [
-              "NUMBER",
-              "CALCULATION",
-              "ATTACHMENT",
-              "DATE",
-              "OPTION",
-              "USER",
-              "TEXT",
-              "OTHER"
-            ]
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
           },
-          "textValue": {
-            "type": "string",
-            "description": "The text representation of the record value, with the format varying by value type:\n- `NUMBER`: a string representation of the number, with currency if specified on the field (example: `\"42\"`)\n- `CALCULATION`: a string representation of the label if specified on the field, otherwise the number (example: `\"Highest Risk\"`)\n- `ATTACHMENT`: the name of the attachment file (example: `\"my-evidence.pdf\"`)\n- `DATE`: the date formatted according to the requesting user\u0027s settings (example: `\"1/1/23, 12:00 PM\"`)\n- `OPTION`: the text value of the option (example: `\"Medium Risk\"`)\n- `USER`: the full name and email of the user (example: `\"First Last (first.last@example.com)\"`)\n- `TEXT`: the text value (example: `\"Data Theft\"`)",
-            "example": "Medium Risk"
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
           },
-          "numericValue": {
-            "type": "number",
-            "description": "The numeric representation of the record value, with the format varying by value type:\n- `NUMBER`: the numeric value of the number (example: `42.0`)\n- `CALCULATION`: the numeric value of the calculation (example: `42.0`)\n- `ATTACHMENT`: the version count of the attachment (example: `2.0`)\n- `DATE`: the date measured in milliseconds since the Unix epoch (example: `1672552800000.0`)\n- `OPTION`: the numeric value of the option (example: `2.0`)\n- `USER`: a null value (example: `null`)\n- `TEXT`: a null value (example: `null`)",
-            "format": "double",
-            "example": 2.0
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
           },
-          "aiGenerated": {
-            "type": "boolean",
-            "description": "Whether this value was generated by AI",
-            "example": false
+          "unpaged": {
+            "type": "boolean"
           },
-          "object": {
-            "type": "string",
-            "description": "Identifies the type of object this data represents",
-            "example": "value"
+          "paged": {
+            "type": "boolean"
           }
-        },
-        "description": "The values of the record field"
+        }
       },
-      "FieldApiOut": {
-        "title": "Field (Response)",
+      "SortObject": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique ID of this Risk Cloud resource",
-            "example": "a1b2c3d4"
+          "empty": {
+            "type": "boolean"
           },
-          "name": {
-            "type": "string",
-            "description": "The name of the field",
-            "example": "Risk Severity"
+          "sorted": {
+            "type": "boolean"
           },
-          "application": {
-            "$ref": "#/components/schemas/ApplicationPropertyApiOut"
-          },
-          "workflow": {
-            "$ref": "#/components/schemas/WorkflowPropertyApiOut"
-          },
-          "label": {
-            "type": "string",
-            "description": "The label of the field as shown on the record",
-            "example": "Enter the Risk Severity based on your assessment"
-          },
-          "global": {
-            "type": "boolean",
-            "description": "Whether the field is global",
-            "example": false
-          },
-          "required": {
-            "type": "boolean",
-            "description": "Whether the field is required for the current step",
-            "example": false
-          },
-          "tooltip": {
-            "type": "string",
-            "description": "The tooltip information of the field",
-            "example": "Select the Risk Severity"
-          },
-          "helpText": {
-            "type": "string",
-            "description": "The help text of the field to supply necessary context for filling out the field",
-            "example": "Determine the Risk Severity from your assessment"
-          },
-          "type": {
-            "title": "Field Type",
-            "type": "string",
-            "description": "The type of the field",
-            "example": "SELECT",
-            "enum": [
-              "DATE",
-              "USER",
-              "EXTERNAL_USER",
-              "TEXT",
-              "TEXT_AREA",
-              "NUMBER",
-              "E_SIGNATURE",
-              "CHECKBOX",
-              "MULTI_SELECT",
-              "RADIO",
-              "SELECT",
-              "ATTACHMENT",
-              "CALCULATION",
-              "TEXT_CONCATENATION",
-              "LINKED_RECORDS_COUNT",
-              "DATE_CALCULATION",
-              "OTHER"
-            ]
-          },
-          "valueType": {
-            "type": "string",
-            "description": "The type of the field value",
-            "example": "OPTION",
-            "enum": [
-              "NUMBER",
-              "CALCULATION",
-              "ATTACHMENT",
-              "DATE",
-              "OPTION",
-              "USER",
-              "TEXT",
-              "OTHER"
-            ]
-          },
-          "optionValues": {
-            "type": "array",
-            "description": "The option values of the field for Select, Multi-Select, Radio, Checkbox, and E-Signature field types",
-            "items": {
-              "$ref": "#/components/schemas/ValuePropertyApiOut"
-            }
-          },
-          "defaultValues": {
-            "type": "array",
-            "description": "The default values of the field",
-            "items": {
-              "$ref": "#/components/schemas/ValuePropertyApiOut"
-            }
-          },
-          "object": {
-            "type": "string",
-            "description": "Identifies the type of object this data represents",
-            "example": "field"
+          "unsorted": {
+            "type": "boolean"
           }
-        },
-        "description": "A array of returned items"
+        }
+      },
+      "RedirectPathPage": {
+        "type": "object",
+        "properties": {
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RedirectPathApiOut"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/Pageable"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "EdgePathPage": {
+        "type": "object",
+        "properties": {
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EdgePathApiOut"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/Pageable"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
       },
       "PageModelOutFieldApiOut": {
         "title": "Page (Response)",

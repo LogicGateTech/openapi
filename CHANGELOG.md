@@ -1,3 +1,161 @@
+## v2025.10.0
+
+#### What's New
+
+##### `GET` /api/v2/paths/redirect
+
+> List all redirect paths
+
+##### `POST` /api/v2/paths/redirect
+
+> Create a redirect path
+
+##### `GET` /api/v2/paths/edge
+
+> List all conditional edge paths
+
+##### `POST` /api/v2/paths/edge
+
+> Create a conditional edge path
+
+##### `GET` /api/v2/paths/redirect/{id}
+
+> Retrieve a redirect path
+
+##### `DELETE` /api/v2/paths/redirect/{id}
+
+> Delete a redirect path
+
+##### `PATCH` /api/v2/paths/redirect/{id}
+
+> Update a redirect path
+
+##### `GET` /api/v2/paths/edge/{id}
+
+> Retrieve a conditional edge path
+
+##### `DELETE` /api/v2/paths/edge/{id}
+
+> Delete a conditional edge path
+
+##### `PATCH` /api/v2/paths/edge/{id}
+
+> Update a conditional edge path
+
+#### What's Changed
+
+##### `GET` /api/v2/records/{id}
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `application` (object)
+        > The parent application of the field, or null for global fields
+
+    * Changed property `fields` (array)
+        > The fields and values of the record
+
+        Changed items (object):
+            > The fields and values of the record
+
+        * Changed property `values` (array)
+            > The values of the record field
+
+            Changed items (object):
+                > Value to be compared against.
+
+##### `GET` /api/v2/fields
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > Field that is to be evaluated for the edge.
+
+        * Changed property `application` (object)
+            > The parent application of the field, or null for global fields
+
+        * Changed property `optionValues` (array)
+            > The option values of the field for Select, Multi-Select, Radio, Checkbox, and E-Signature field types
+
+            Changed items (object):
+                > Value to be compared against.
+
+##### `GET` /api/v2/records
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `application` (object)
+            > The parent application of the field, or null for global fields
+
+        * Changed property `fields` (array)
+            > The fields and values of the record
+
+            Changed items (object):
+                > The fields and values of the record
+
+            * Changed property `values` (array)
+                > The values of the record field
+
+                Changed items (object):
+                    > Value to be compared against.
+
+##### `GET` /api/v2/records/{id}/linked
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+        Changed items (object):
+            > A array of returned items
+
+        * Changed property `application` (object)
+            > The parent application of the field, or null for global fields
+
+        * Changed property `fields` (array)
+            > The fields and values of the record
+
+            Changed items (object):
+                > The fields and values of the record
+
+            * Changed property `values` (array)
+                > The values of the record field
+
+                Changed items (object):
+                    > Value to be compared against.
+
 ## v2025.9.2
 
 No API updates.
