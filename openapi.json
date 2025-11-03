@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2025.10.0"
+    "version": "v2025.10.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -52,6 +52,10 @@
     {
       "name": "Field",
       "description": "A [Field](https://help.logicgate.com/hc/en-us/articles/4402674064020-Create-Fields) is used to capture information from and display information to users in a Workflow"
+    },
+    {
+      "name": "Next Path",
+      "description": "API endpoints for determining the next path(s) in a workflow, including routing and step information."
     },
     {
       "name": "Record",
@@ -519,6 +523,103 @@
           }
         },
         "x-beta": "true"
+      }
+    },
+    "/api/v2/paths/next": {
+      "get": {
+        "tags": [
+          "Next Path"
+        ],
+        "summary": "List all default next paths",
+        "description": "Get a list of all default next paths in the environment that are entitled to the current user. Build user privileges are required.",
+        "operationId": "readNextPaths",
+        "parameters": [
+          {
+            "name": "step",
+            "in": "query",
+            "description": "Providing a step ID returns paths only to or from the identified step.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "example": "a1b2c3d4"
+          },
+          {
+            "name": "pageable",
+            "in": "query",
+            "description": "Wrapper for the parameters page, size, and sort. Available sort properties: id.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            },
+            "example": "?page\u003d0\u0026size\u003d10\u0026sort\u003dtarget,DESC"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextPathPage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Next Path"
+        ],
+        "summary": "Create a default next path",
+        "description": "Build privileges and step access are required.",
+        "operationId": "createNextPath",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NextApiCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextPathApiOut"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/v2/paths/edge": {
@@ -1282,6 +1383,59 @@
         "x-beta": "true"
       }
     },
+    "/api/v2/paths/next/{id}": {
+      "patch": {
+        "tags": [
+          "Next Path"
+        ],
+        "summary": "Update a default next path",
+        "description": "User must be entitled to the path in question, meaning they must have build access and be entitled both the source and target steps.",
+        "operationId": "updateNextPath",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the default next path.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PathApiUpdateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextPathApiOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v2/paths/edge/{id}": {
       "get": {
         "tags": [
@@ -1793,6 +1947,84 @@
         "x-beta": "true"
       }
     },
+    "/api/v2/paths/next/{next-path}": {
+      "get": {
+        "tags": [
+          "Next Path"
+        ],
+        "summary": "Create a default next path",
+        "description": "Build privileges and step access are required.",
+        "operationId": "readNextPath",
+        "parameters": [
+          {
+            "name": "next-path",
+            "in": "path",
+            "description": "Providing a step ID returns paths only to or from the identified step.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "a1b2c3d4"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextPathApiOut"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Next Path"
+        ],
+        "summary": "Delete a default next path",
+        "description": "Build user privileges are required.",
+        "operationId": "deleteNextPath",
+        "parameters": [
+          {
+            "name": "next-path",
+            "in": "path",
+            "description": "The unique ID of the default next path.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A bearer authorization header containing a Risk Cloud API access token in the format `Authorization: Bearer {TOKEN}`.\n\nTo obtain a Risk Cloud API access token, refer to [Obtain an API Access Token](https://www.logicgate.com/developer/risk-cloud-api-authentication/) in the [LogicGate Help Center](https://help.logicgate.com/hc/en-us).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {TOKEN}"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
     "/api/v2/fields": {
       "get": {
         "tags": [
@@ -2264,6 +2496,16 @@
             "format": "int32",
             "example": 20
           },
+          "type": {
+            "type": "string",
+            "description": "The type of the step",
+            "example": "ORIGIN",
+            "enum": [
+              "ORIGIN",
+              "CHAIN",
+              "END"
+            ]
+          },
           "description": {
             "type": "string",
             "description": "The description of the step",
@@ -2484,6 +2726,103 @@
             "type": "string",
             "description": "Identifies the type of object this data represents",
             "example": "redirect-path"
+          }
+        }
+      },
+      "NextApiCreateIn": {
+        "title": "Default next path (Create).",
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The ID of the source step.",
+            "example": "a1b2c3d4"
+          },
+          "to": {
+            "type": "string",
+            "description": "The ID of the destination step.",
+            "example": "a1b2c3d4"
+          },
+          "allowInternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to any user with access to the target step on submission.",
+            "example": false
+          },
+          "allowExternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to external email addresses on submission.",
+            "example": false
+          },
+          "allowCurrentAssignee": {
+            "type": "boolean",
+            "description": "Allow a step\u0027s current assignee to submit without assigning",
+            "example": false
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the path.",
+            "example": "This describes the path."
+          },
+          "requireAssignee": {
+            "type": "boolean",
+            "description": "Require an assignee to be chosen",
+            "example": false
+          }
+        },
+        "description": "Default next path (Create)."
+      },
+      "NextPathApiOut": {
+        "title": "Path (Response).",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "from": {
+            "type": "string",
+            "description": "The ID of the source step.",
+            "example": "a1b2c3d4"
+          },
+          "to": {
+            "type": "string",
+            "description": "The ID of the destination step.",
+            "example": "a1b2c3d4"
+          },
+          "allowInternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to any user with access to the target step on submission.",
+            "example": false
+          },
+          "allowExternal": {
+            "type": "boolean",
+            "description": "Whether a step\u0027s current assignee may assign this record to external email addresses on submission.",
+            "example": false
+          },
+          "allowCurrentAssignee": {
+            "type": "boolean",
+            "description": "Allow a step\u0027s current assignee to submit without assigning",
+            "example": false
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the path.",
+            "example": "This describes the path."
+          },
+          "requireAssignee": {
+            "type": "boolean",
+            "description": "Require an assignee to be chosen",
+            "example": false
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "next-path"
           }
         }
       },
@@ -2877,11 +3216,6 @@
             "format": "double",
             "example": 2.0
           },
-          "aiGenerated": {
-            "type": "boolean",
-            "description": "Whether this value was generated by AI",
-            "example": false
-          },
           "object": {
             "type": "string",
             "description": "Identifies the type of object this data represents",
@@ -3273,7 +3607,7 @@
             "example": false
           }
         },
-        "description": "Redirect path (Update)."
+        "description": "Default next path (Update)."
       },
       "EdgePathApiUpdateIn": {
         "title": "Conditional edge path (Update).",
@@ -3846,7 +4180,13 @@
             "format": "int64"
           },
           "sort": {
-            "$ref": "#/components/schemas/SortObject"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortObject"
+            }
+          },
+          "paged": {
+            "type": "boolean"
           },
           "pageNumber": {
             "type": "integer",
@@ -3858,22 +4198,25 @@
           },
           "unpaged": {
             "type": "boolean"
-          },
-          "paged": {
-            "type": "boolean"
           }
         }
       },
       "SortObject": {
         "type": "object",
         "properties": {
-          "empty": {
+          "direction": {
+            "type": "string"
+          },
+          "nullHandling": {
+            "type": "string"
+          },
+          "ascending": {
             "type": "boolean"
           },
-          "sorted": {
-            "type": "boolean"
+          "property": {
+            "type": "string"
           },
-          "unsorted": {
+          "ignoreCase": {
             "type": "boolean"
           }
         }
@@ -3910,7 +4253,59 @@
             "format": "int32"
           },
           "sort": {
-            "$ref": "#/components/schemas/SortObject"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortObject"
+            }
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/Pageable"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "NextPathPage": {
+        "type": "object",
+        "properties": {
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NextPathApiOut"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortObject"
+            }
           },
           "numberOfElements": {
             "type": "integer",
@@ -3956,7 +4351,10 @@
             "format": "int32"
           },
           "sort": {
-            "$ref": "#/components/schemas/SortObject"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortObject"
+            }
           },
           "numberOfElements": {
             "type": "integer",
