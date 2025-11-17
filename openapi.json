@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2025.10.1"
+    "version": "v2025.11.0"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -473,7 +473,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RedirectPathPage"
+                  "$ref": "#/components/schemas/PageModelOutRedirectPathApiOut"
                 }
               }
             }
@@ -572,7 +572,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NextPathPage"
+                  "$ref": "#/components/schemas/PageModelOutNextPathApiOut"
                 }
               }
             }
@@ -668,7 +668,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EdgePathPage"
+                  "$ref": "#/components/schemas/PageModelOutEdgePathApiOut"
                 }
               }
             }
@@ -4221,150 +4221,60 @@
           }
         }
       },
-      "RedirectPathPage": {
+      "PageModelOutRedirectPathApiOut": {
+        "title": "Page (Response)",
         "type": "object",
         "properties": {
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
           "content": {
             "type": "array",
+            "description": "A array of returned items",
             "items": {
               "$ref": "#/components/schemas/RedirectPathApiOut"
             }
           },
-          "number": {
-            "type": "integer",
-            "format": "int32"
+          "links": {
+            "$ref": "#/components/schemas/PageLinksOut"
           },
-          "sort": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SortObject"
-            }
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/Pageable"
-          },
-          "empty": {
-            "type": "boolean"
+          "page": {
+            "$ref": "#/components/schemas/PageInfoOut"
           }
         }
       },
-      "NextPathPage": {
+      "PageModelOutNextPathApiOut": {
+        "title": "Page (Response)",
         "type": "object",
         "properties": {
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
           "content": {
             "type": "array",
+            "description": "A array of returned items",
             "items": {
               "$ref": "#/components/schemas/NextPathApiOut"
             }
           },
-          "number": {
-            "type": "integer",
-            "format": "int32"
+          "links": {
+            "$ref": "#/components/schemas/PageLinksOut"
           },
-          "sort": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SortObject"
-            }
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/Pageable"
-          },
-          "empty": {
-            "type": "boolean"
+          "page": {
+            "$ref": "#/components/schemas/PageInfoOut"
           }
         }
       },
-      "EdgePathPage": {
+      "PageModelOutEdgePathApiOut": {
+        "title": "Page (Response)",
         "type": "object",
         "properties": {
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
           "content": {
             "type": "array",
+            "description": "A array of returned items",
             "items": {
               "$ref": "#/components/schemas/EdgePathApiOut"
             }
           },
-          "number": {
-            "type": "integer",
-            "format": "int32"
+          "links": {
+            "$ref": "#/components/schemas/PageLinksOut"
           },
-          "sort": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SortObject"
-            }
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/Pageable"
-          },
-          "empty": {
-            "type": "boolean"
+          "page": {
+            "$ref": "#/components/schemas/PageInfoOut"
           }
         }
       },

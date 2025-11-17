@@ -1,3 +1,205 @@
+## v2025.11.0
+
+#### What's Changed
+
+##### `GET` /api/v2/paths/redirect
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `links` (object)
+        > A collection of page URL links for navigation and iteration
+
+        * Property `first` (string)
+            > A URL path to the first page of requested data
+
+        * Property `prev` (string)
+            > A URL path to the next page of requested data or `null` if currently on first page
+
+        * Property `self` (string)
+            > A URL path to the current page of requested data
+
+        * Property `next` (string)
+            > A URL link to the next page of requested data or `null` if currently on last page
+
+        * Property `last` (string)
+            > A URL link to the last page of requested data
+
+    * Added property `page` (object)
+        > A collection page metadata
+
+        * Property `size` (integer)
+            > The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)
+
+        * Property `totalElements` (integer)
+            > The total number of items available
+
+        * Property `totalPages` (integer)
+            > The total number of pages available based on the size
+
+        * Property `number` (integer)
+            > The zero-indexed page number (must not be less than 0, defaults to 0)
+
+    * Deleted property `totalElements` (integer)
+
+    * Deleted property `totalPages` (integer)
+
+    * Deleted property `first` (boolean)
+
+    * Deleted property `last` (boolean)
+
+    * Deleted property `size` (integer)
+
+    * Deleted property `number` (integer)
+
+    * Deleted property `sort` (array)
+
+    * Deleted property `numberOfElements` (integer)
+
+    * Deleted property `pageable` (object)
+
+    * Deleted property `empty` (boolean)
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+##### `GET` /api/v2/paths/next
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `links` (object)
+        > A collection of page URL links for navigation and iteration
+
+        * Property `first` (string)
+            > A URL path to the first page of requested data
+
+        * Property `prev` (string)
+            > A URL path to the next page of requested data or `null` if currently on first page
+
+        * Property `self` (string)
+            > A URL path to the current page of requested data
+
+        * Property `next` (string)
+            > A URL link to the next page of requested data or `null` if currently on last page
+
+        * Property `last` (string)
+            > A URL link to the last page of requested data
+
+    * Added property `page` (object)
+        > A collection page metadata
+
+        * Property `size` (integer)
+            > The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)
+
+        * Property `totalElements` (integer)
+            > The total number of items available
+
+        * Property `totalPages` (integer)
+            > The total number of pages available based on the size
+
+        * Property `number` (integer)
+            > The zero-indexed page number (must not be less than 0, defaults to 0)
+
+    * Deleted property `totalElements` (integer)
+
+    * Deleted property `totalPages` (integer)
+
+    * Deleted property `first` (boolean)
+
+    * Deleted property `last` (boolean)
+
+    * Deleted property `size` (integer)
+
+    * Deleted property `number` (integer)
+
+    * Deleted property `sort` (array)
+
+    * Deleted property `numberOfElements` (integer)
+
+    * Deleted property `pageable` (object)
+
+    * Deleted property `empty` (boolean)
+
+    * Changed property `content` (array)
+        > A array of returned items
+
+##### `GET` /api/v2/paths/edge
+
+
+###### Return Type:
+
+Changed response : **200 OK**
+> OK
+
+* Changed content type : `application/json`
+
+    * Added property `links` (object)
+        > A collection of page URL links for navigation and iteration
+
+        * Property `first` (string)
+            > A URL path to the first page of requested data
+
+        * Property `prev` (string)
+            > A URL path to the next page of requested data or `null` if currently on first page
+
+        * Property `self` (string)
+            > A URL path to the current page of requested data
+
+        * Property `next` (string)
+            > A URL link to the next page of requested data or `null` if currently on last page
+
+        * Property `last` (string)
+            > A URL link to the last page of requested data
+
+    * Added property `page` (object)
+        > A collection page metadata
+
+        * Property `size` (integer)
+            > The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)
+
+        * Property `totalElements` (integer)
+            > The total number of items available
+
+        * Property `totalPages` (integer)
+            > The total number of pages available based on the size
+
+        * Property `number` (integer)
+            > The zero-indexed page number (must not be less than 0, defaults to 0)
+
+    * Deleted property `totalElements` (integer)
+
+    * Deleted property `totalPages` (integer)
+
+    * Deleted property `first` (boolean)
+
+    * Deleted property `last` (boolean)
+
+    * Deleted property `size` (integer)
+
+    * Deleted property `number` (integer)
+
+    * Deleted property `sort` (array)
+
+    * Deleted property `numberOfElements` (integer)
+
+    * Deleted property `pageable` (object)
+
+    * Deleted property `empty` (boolean)
+
+    * Changed property `content` (array)
+        > A array of returned items
+
 ## v2025.10.1
 
 #### What's New
