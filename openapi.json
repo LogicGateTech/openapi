@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.0",
   "info": {
     "title": "Risk Cloud API",
     "description": "Welcome to the Risk Cloud API v2! This is a collection of new API-first and RESTful API endpoints to streamline the creation of custom integrations with the Risk Cloud.\n\nFor the API documentation of our legacy API v1 endpoints, reference [Risk Cloud API v1](https://docs.logicgate.com/v1/index.html).",
@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2025.11.0"
+    "version": "v2025.11.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -115,9 +115,9 @@
             "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "required": false,
             "schema": {
-              "minimum": 0,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 0
             },
             "example": 0
           },
@@ -127,9 +127,9 @@
             "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "required": false,
             "schema": {
-              "minimum": 1,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 1
             },
             "example": 20
           },
@@ -227,9 +227,9 @@
             "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "required": false,
             "schema": {
-              "minimum": 0,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 0
             },
             "example": 0
           },
@@ -239,9 +239,9 @@
             "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "required": false,
             "schema": {
-              "minimum": 1,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 1
             },
             "example": 20
           },
@@ -340,9 +340,9 @@
             "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "required": false,
             "schema": {
-              "minimum": 0,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 0
             },
             "example": 0
           },
@@ -352,9 +352,9 @@
             "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "required": false,
             "schema": {
-              "minimum": 1,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 1
             },
             "example": 20
           },
@@ -735,9 +735,9 @@
             "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "required": false,
             "schema": {
-              "minimum": 0,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 0
             },
             "example": 0
           },
@@ -747,9 +747,9 @@
             "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "required": false,
             "schema": {
-              "minimum": 1,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 1
             },
             "example": 20
           },
@@ -1757,9 +1757,9 @@
             "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "required": false,
             "schema": {
-              "minimum": 0,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 0
             },
             "example": 0
           },
@@ -1769,9 +1769,9 @@
             "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "required": false,
             "schema": {
-              "minimum": 1,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 1
             },
             "example": 20
           },
@@ -1879,10 +1879,10 @@
             "description": "Specifies the maximum depth of linked records to return with regards to the relationship between the given record\u0027s workflow and the workflow specified by `workflow-id` (must not be less than 0, defaults to 10)",
             "required": false,
             "schema": {
-              "minimum": 1,
               "type": "integer",
               "format": "int32",
-              "default": 10
+              "default": 10,
+              "minimum": 1
             },
             "example": 10
           },
@@ -1903,9 +1903,9 @@
             "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "required": false,
             "schema": {
-              "minimum": 0,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 0
             },
             "example": 0
           },
@@ -1915,9 +1915,9 @@
             "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "required": false,
             "schema": {
-              "minimum": 1,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 1
             },
             "example": 20
           },
@@ -2074,8 +2074,8 @@
             "required": false,
             "schema": {
               "type": "array",
+              "default": [],
               "items": {
-                "title": "Field Type (Filter)",
                 "type": "string",
                 "enum": [
                   "DATE",
@@ -2093,9 +2093,9 @@
                   "CALCULATION",
                   "TEXT_CONCATENATION",
                   "DATE_CALCULATION"
-                ]
-              },
-              "default": []
+                ],
+                "title": "Field Type (Filter)"
+              }
             },
             "example": "SELECT"
           },
@@ -2105,14 +2105,14 @@
             "description": "A scope where, if provided, the response will only contain fields that have either global or workflow scopes (defaults to ALL)",
             "required": false,
             "schema": {
-              "title": "Field Scope (Filter)",
               "type": "string",
               "default": "ALL",
               "enum": [
                 "ALL",
                 "GLOBAL",
                 "WORKFLOW"
-              ]
+              ],
+              "title": "Field Scope (Filter)"
             },
             "example": "GLOBAL"
           },
@@ -2122,9 +2122,9 @@
             "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "required": false,
             "schema": {
-              "minimum": 0,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 0
             },
             "example": 0
           },
@@ -2134,9 +2134,9 @@
             "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "required": false,
             "schema": {
-              "minimum": 1,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 1
             },
             "example": 20
           },
@@ -2201,7 +2201,6 @@
             "description": "Filter by type of access event (LOGIN, LOGOUT, LOGIN_FAILED, CREDENTIALS_ROLLED, TOKEN_ROLLED).",
             "required": false,
             "schema": {
-              "title": "Access Audit Type",
               "type": "string",
               "enum": [
                 "LOGIN",
@@ -2210,7 +2209,8 @@
                 "CREDENTIALS_ROLLED",
                 "TOKEN_ROLLED",
                 "OTHER"
-              ]
+              ],
+              "title": "Access Audit Type"
             },
             "example": "LOGIN"
           },
@@ -2242,9 +2242,9 @@
             "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "required": false,
             "schema": {
-              "minimum": 0,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 0
             },
             "example": 0
           },
@@ -2254,9 +2254,9 @@
             "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "required": false,
             "schema": {
-              "minimum": 1,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 1
             },
             "example": 20
           },
@@ -2290,18 +2290,14 @@
   "components": {
     "schemas": {
       "WorkflowApiCreateIn": {
-        "title": "Workflow (Create)",
-        "required": [
-          "applicationId",
-          "name",
-          "recordPrefix"
-        ],
         "type": "object",
+        "description": "Workflow (Create)",
         "properties": {
           "name": {
             "type": "string",
             "description": "The name of the workflow",
-            "example": "Risk Assessments"
+            "example": "Risk Assessments",
+            "minLength": 1
           },
           "description": {
             "type": "string",
@@ -2311,32 +2307,38 @@
           "recordPrefix": {
             "type": "string",
             "description": "The prefix to be used in the name of every record created from this workflow",
-            "example": "Assessment"
+            "example": "Assessment",
+            "minLength": 1
           },
           "applicationId": {
             "type": "string",
             "description": "The unique ID of the parent application of the workflow",
-            "example": "a1b2c3d4"
+            "example": "a1b2c3d4",
+            "minLength": 1
           },
           "xpos": {
-            "minimum": 0,
             "type": "integer",
-            "description": "The x-coordinate of the workflow in the application builder (must not be less than 0, defaults to 0)",
             "format": "int32",
-            "example": 20
+            "description": "The x-coordinate of the workflow in the application builder (must not be less than 0, defaults to 0)",
+            "example": 20,
+            "minimum": 0
           },
           "ypos": {
-            "minimum": 0,
             "type": "integer",
-            "description": "The y-coordinate of the workflow in the application builder (must not be less than 0, defaults to 0)",
             "format": "int32",
-            "example": 20
+            "description": "The y-coordinate of the workflow in the application builder (must not be less than 0, defaults to 0)",
+            "example": 20,
+            "minimum": 0
           }
         },
-        "description": "Workflow (Create)"
+        "required": [
+          "applicationId",
+          "name",
+          "recordPrefix"
+        ],
+        "title": "Workflow (Create)"
       },
       "WorkflowApiOut": {
-        "title": "Workflow (Response)",
         "type": "object",
         "properties": {
           "id": {
@@ -2366,69 +2368,71 @@
           },
           "xpos": {
             "type": "integer",
-            "description": "The x-coordinate of the workflow in the application builder",
             "format": "int32",
+            "description": "The x-coordinate of the workflow in the application builder",
             "example": 20
           },
           "ypos": {
             "type": "integer",
-            "description": "The y-coordinate of the workflow in the application builder",
             "format": "int32",
+            "description": "The y-coordinate of the workflow in the application builder",
             "example": 20
           },
           "type": {
             "type": "string",
             "description": "The type of workflow",
-            "example": "WORKFLOW",
             "enum": [
               "WORKFLOW",
               "JIRA_WORKFLOW",
               "CONTROL_WORKFLOW",
               "ANALYSIS_WORKFLOW"
-            ]
+            ],
+            "example": "WORKFLOW"
           },
           "object": {
             "type": "string",
             "description": "Identifies the type of object this data represents",
             "example": "workflow"
           }
-        }
+        },
+        "title": "Workflow (Response)"
       },
       "WorkflowMapApiCreateIn": {
-        "title": "Workflow Map (Create)",
-        "required": [
-          "from",
-          "relationship",
-          "to"
-        ],
         "type": "object",
+        "description": "Workflow Map (Create)",
         "properties": {
           "from": {
             "type": "string",
             "description": "The unique ID of the source workflow of the workflow map relationship",
-            "example": "a1b2c3d4"
+            "example": "a1b2c3d4",
+            "minLength": 1
           },
           "to": {
             "type": "string",
             "description": "The unique ID of the destination workflow of the workflow map relationship",
-            "example": "a1b2c3d4"
+            "example": "a1b2c3d4",
+            "minLength": 1
           },
           "relationship": {
             "type": "string",
             "description": "The type of the relationship between workflows",
-            "example": "ONE_TO_MANY",
             "enum": [
               "OneToOne",
               "OneToMany",
               "ManyToOne",
               "ManyToMany"
-            ]
+            ],
+            "example": "ONE_TO_MANY"
           }
         },
-        "description": "Workflow Map (Create)"
+        "required": [
+          "from",
+          "relationship",
+          "to"
+        ],
+        "title": "Workflow Map (Create)"
       },
       "WorkflowMapApiOut": {
-        "title": "Workflow Map (Response)",
         "type": "object",
         "properties": {
           "id": {
@@ -2449,62 +2453,61 @@
           "relationship": {
             "type": "string",
             "description": "The type of the relationship between workflows",
-            "example": "ONE_TO_MANY",
             "enum": [
               "OneToOne",
               "OneToMany",
               "ManyToOne",
               "ManyToMany"
-            ]
+            ],
+            "example": "ONE_TO_MANY"
           },
           "object": {
             "type": "string",
             "description": "Identifies the type of object this data represents",
             "example": "workflow-map"
           }
-        }
+        },
+        "title": "Workflow Map (Response)"
       },
       "StepApiCreateIn": {
-        "title": "Step (Create)",
-        "required": [
-          "name",
-          "workflowId"
-        ],
         "type": "object",
+        "description": "Step (Create)",
         "properties": {
           "name": {
             "type": "string",
             "description": "The name of the step",
-            "example": "Identify Risk"
+            "example": "Identify Risk",
+            "minLength": 1
           },
           "workflowId": {
             "type": "string",
             "description": "The unique ID of the parent workflow of the step",
-            "example": "a1b2c3d4"
+            "example": "a1b2c3d4",
+            "minLength": 1
           },
           "xpos": {
-            "minimum": 0,
             "type": "integer",
-            "description": "The x-coordinate of the step in the application builder (must not be less than 0, defaults to 0)",
             "format": "int32",
-            "example": 20
+            "description": "The x-coordinate of the step in the application builder (must not be less than 0, defaults to 0)",
+            "example": 20,
+            "minimum": 0
           },
           "ypos": {
-            "minimum": 0,
             "type": "integer",
-            "description": "The y-coordinate of the step in the application builder (must not be less than 0, defaults to 0)",
             "format": "int32",
-            "example": 20
+            "description": "The y-coordinate of the step in the application builder (must not be less than 0, defaults to 0)",
+            "example": 20,
+            "minimum": 0
           },
           "type": {
             "type": "string",
             "description": "The type of the step",
-            "example": "ORIGIN",
             "enum": [
               "ORIGIN",
               "CHAIN",
               "END"
-            ]
+            ],
+            "example": "ORIGIN"
           },
           "description": {
             "type": "string",
@@ -2519,12 +2522,12 @@
           "assignableUserType": {
             "type": "string",
             "description": "Indicates which users are allowed to be assigned this step on a record (defaults to APP_USERS)",
-            "example": "APP_USERS",
             "enum": [
               "APP_AND_EXTERNAL_USERS",
               "APP_USERS",
               "EXTERNAL_USERS"
-            ]
+            ],
+            "example": "APP_USERS"
           },
           "externalUserMfaRequired": {
             "type": "boolean",
@@ -2532,10 +2535,13 @@
             "example": false
           }
         },
-        "description": "Step (Create)"
+        "required": [
+          "name",
+          "workflowId"
+        ],
+        "title": "Step (Create)"
       },
       "StepApiOut": {
-        "title": "Step (Response)",
         "type": "object",
         "properties": {
           "id": {
@@ -2555,25 +2561,25 @@
           },
           "xpos": {
             "type": "integer",
-            "description": "The x-coordinate of the step in the application builder",
             "format": "int32",
+            "description": "The x-coordinate of the step in the application builder",
             "example": 20
           },
           "ypos": {
             "type": "integer",
-            "description": "The y-coordinate of the step in the application builder",
             "format": "int32",
+            "description": "The y-coordinate of the step in the application builder",
             "example": 20
           },
           "type": {
             "type": "string",
             "description": "The type of the step",
-            "example": "ORIGIN",
             "enum": [
               "ORIGIN",
               "CHAIN",
               "END"
-            ]
+            ],
+            "example": "ORIGIN"
           },
           "enableComments": {
             "type": "boolean",
@@ -2583,12 +2589,12 @@
           "assignableUserType": {
             "type": "string",
             "description": "Indicates which users are allowed to be assigned this step on a record",
-            "example": "APP_USERS",
             "enum": [
               "APP_AND_EXTERNAL_USERS",
               "APP_USERS",
               "EXTERNAL_USERS"
-            ]
+            ],
+            "example": "APP_USERS"
           },
           "externalUserMfaRequired": {
             "type": "boolean",
@@ -2596,17 +2602,18 @@
             "example": false
           },
           "workflow": {
-            "$ref": "#/components/schemas/WorkflowPropertyApiOut"
+            "$ref": "#/components/schemas/WorkflowPropertyApiOut",
+            "description": "The parent workflow of the step"
           },
           "object": {
             "type": "string",
             "description": "Identifies the type of object this data represents",
             "example": "step"
           }
-        }
+        },
+        "title": "Step (Response)"
       },
       "WorkflowPropertyApiOut": {
-        "title": "Workflow (Property)",
         "type": "object",
         "properties": {
           "id": {
@@ -2630,15 +2637,11 @@
             "example": "workflow"
           }
         },
-        "description": "The parent workflow of the step"
+        "title": "Workflow (Property)"
       },
       "RedirectApiCreateIn": {
-        "title": "Redirect path (Create).",
-        "required": [
-          "from",
-          "to"
-        ],
         "type": "object",
+        "description": "Redirect path (Create).",
         "properties": {
           "from": {
             "type": "string",
@@ -2676,10 +2679,13 @@
             "example": false
           }
         },
-        "description": "Redirect path (Create)."
+        "required": [
+          "from",
+          "to"
+        ],
+        "title": "Redirect path (Create)."
       },
       "RedirectPathApiOut": {
-        "title": "Path (Response).",
         "type": "object",
         "properties": {
           "id": {
@@ -2727,15 +2733,12 @@
             "description": "Identifies the type of object this data represents",
             "example": "redirect-path"
           }
-        }
+        },
+        "title": "Path (Response)."
       },
       "NextApiCreateIn": {
-        "title": "Default next path (Create).",
-        "required": [
-          "from",
-          "to"
-        ],
         "type": "object",
+        "description": "Default next path (Create).",
         "properties": {
           "from": {
             "type": "string",
@@ -2773,10 +2776,13 @@
             "example": false
           }
         },
-        "description": "Default next path (Create)."
+        "required": [
+          "from",
+          "to"
+        ],
+        "title": "Default next path (Create)."
       },
       "NextPathApiOut": {
-        "title": "Path (Response).",
         "type": "object",
         "properties": {
           "id": {
@@ -2824,15 +2830,12 @@
             "description": "Identifies the type of object this data represents",
             "example": "next-path"
           }
-        }
+        },
+        "title": "Path (Response)."
       },
       "EdgeApiCreateIn": {
-        "title": "Conditional edge path (Create).",
-        "required": [
-          "from",
-          "to"
-        ],
         "type": "object",
+        "description": "Conditional edge path (Create).",
         "properties": {
           "from": {
             "type": "string",
@@ -2872,7 +2875,6 @@
           "operator": {
             "type": "string",
             "description": "Type of operator for an edge path.",
-            "example": "EQUALS",
             "enum": [
               "EQUALS",
               "NOT_EQUALS",
@@ -2888,12 +2890,13 @@
               "NOT_NULL",
               "DATE_RANGE",
               "NUMERIC_RANGE"
-            ]
+            ],
+            "example": "EQUALS"
           },
           "priority": {
             "type": "integer",
-            "description": "Determines which edge path should be invoked first. Priority is in descending order with 0 being the first edge.",
             "format": "int32",
+            "description": "Determines which edge path should be invoked first. Priority is in descending order with 0 being the first edge.",
             "example": 0
           },
           "field": {
@@ -2902,13 +2905,17 @@
             "example": "a1b2c3d4"
           },
           "option": {
-            "$ref": "#/components/schemas/FieldOptionCreateIn"
+            "$ref": "#/components/schemas/FieldOptionCreateIn",
+            "description": "Value to be compared against."
           }
         },
-        "description": "Conditional edge path (Create)."
+        "required": [
+          "from",
+          "to"
+        ],
+        "title": "Conditional edge path (Create)."
       },
       "FieldOptionCreateIn": {
-        "title": "Field (Create)",
         "type": "object",
         "properties": {
           "textValue": {
@@ -2918,15 +2925,14 @@
           },
           "numericValue": {
             "type": "number",
-            "description": "The numeric representation of the record value, with the format varying by value type:\n- `NUMBER`: the numeric value of the number (example: `42.0`)\n- `CALCULATION`: the numeric value of the calculation (example: `42.0`)\n- `ATTACHMENT`: the version count of the attachment (example: `2.0`)\n- `DATE`: the date measured in milliseconds since the Unix epoch (example: `1672552800000.0`)\n- `OPTION`: the numeric value of the option (example: `2.0`)\n- `USER`: a null value (example: `null`)\n- `TEXT`: a null value (example: `null`)",
             "format": "double",
+            "description": "The numeric representation of the record value, with the format varying by value type:\n- `NUMBER`: the numeric value of the number (example: `42.0`)\n- `CALCULATION`: the numeric value of the calculation (example: `42.0`)\n- `ATTACHMENT`: the version count of the attachment (example: `2.0`)\n- `DATE`: the date measured in milliseconds since the Unix epoch (example: `1672552800000.0`)\n- `OPTION`: the numeric value of the option (example: `2.0`)\n- `USER`: a null value (example: `null`)\n- `TEXT`: a null value (example: `null`)",
             "example": 2.0
           }
         },
-        "description": "Value to be compared against."
+        "title": "Field (Create)"
       },
       "ApplicationPropertyApiOut": {
-        "title": "Application (Property)",
         "type": "object",
         "properties": {
           "id": {
@@ -2942,7 +2948,6 @@
           "type": {
             "type": "string",
             "description": "The type of Risk Cloud application",
-            "example": "CONTROLS_COMPLIANCE",
             "enum": [
               "ACCESS_MANAGEMENT",
               "AML_KYC",
@@ -2980,7 +2985,8 @@
               "STANDARDS_REGULATIONS",
               "SURVEY",
               "THIRD_PARTY_RISK_MANAGEMENT"
-            ]
+            ],
+            "example": "CONTROLS_COMPLIANCE"
           },
           "object": {
             "type": "string",
@@ -2988,10 +2994,9 @@
             "example": "application"
           }
         },
-        "description": "The parent application of the field, or null for global fields"
+        "title": "Application (Property)"
       },
       "EdgePathApiOut": {
-        "title": "Path (Response).",
         "type": "object",
         "properties": {
           "id": {
@@ -3042,7 +3047,6 @@
           "operator": {
             "type": "string",
             "description": "Type of operator for an edge path.",
-            "example": "EQUALS",
             "enum": [
               "EQUALS",
               "NOT_EQUALS",
@@ -3058,24 +3062,27 @@
               "NOT_NULL",
               "DATE_RANGE",
               "NUMERIC_RANGE"
-            ]
+            ],
+            "example": "EQUALS"
           },
           "priority": {
             "type": "integer",
-            "description": "Determines which edge path should be invoked first. Priority is in descending order with 0 being the first edge.",
             "format": "int32",
+            "description": "Determines which edge path should be invoked first. Priority is in descending order with 0 being the first edge.",
             "example": 0
           },
           "field": {
-            "$ref": "#/components/schemas/FieldApiOut"
+            "$ref": "#/components/schemas/FieldApiOut",
+            "description": "Field that is to be evaluated for the edge."
           },
           "option": {
-            "$ref": "#/components/schemas/ValuePropertyApiOut"
+            "$ref": "#/components/schemas/ValuePropertyApiOut",
+            "description": "Value to be compared against."
           }
-        }
+        },
+        "title": "Path (Response)."
       },
       "FieldApiOut": {
-        "title": "Field (Response)",
         "type": "object",
         "properties": {
           "id": {
@@ -3089,10 +3096,12 @@
             "example": "Risk Severity"
           },
           "application": {
-            "$ref": "#/components/schemas/ApplicationPropertyApiOut"
+            "$ref": "#/components/schemas/ApplicationPropertyApiOut",
+            "description": "The parent application of the field, or null for global fields"
           },
           "workflow": {
-            "$ref": "#/components/schemas/WorkflowPropertyApiOut"
+            "$ref": "#/components/schemas/WorkflowPropertyApiOut",
+            "description": "The parent workflow of the field, or null for global fields"
           },
           "label": {
             "type": "string",
@@ -3120,10 +3129,8 @@
             "example": "Determine the Risk Severity from your assessment"
           },
           "type": {
-            "title": "Field Type",
             "type": "string",
             "description": "The type of the field",
-            "example": "SELECT",
             "enum": [
               "DATE",
               "USER",
@@ -3142,12 +3149,13 @@
               "LINKED_RECORDS_COUNT",
               "DATE_CALCULATION",
               "OTHER"
-            ]
+            ],
+            "example": "SELECT",
+            "title": "Field Type"
           },
           "valueType": {
             "type": "string",
             "description": "The type of the field value",
-            "example": "OPTION",
             "enum": [
               "NUMBER",
               "CALCULATION",
@@ -3157,7 +3165,8 @@
               "USER",
               "TEXT",
               "OTHER"
-            ]
+            ],
+            "example": "OPTION"
           },
           "optionValues": {
             "type": "array",
@@ -3179,10 +3188,9 @@
             "example": "field"
           }
         },
-        "description": "Field that is to be evaluated for the edge."
+        "title": "Field (Response)"
       },
       "ValuePropertyApiOut": {
-        "title": "Value (Property)",
         "type": "object",
         "properties": {
           "id": {
@@ -3193,7 +3201,6 @@
           "type": {
             "type": "string",
             "description": "The type of the value",
-            "example": "OPTION",
             "enum": [
               "NUMBER",
               "CALCULATION",
@@ -3203,7 +3210,8 @@
               "USER",
               "TEXT",
               "OTHER"
-            ]
+            ],
+            "example": "OPTION"
           },
           "textValue": {
             "type": "string",
@@ -3212,8 +3220,8 @@
           },
           "numericValue": {
             "type": "number",
-            "description": "The numeric representation of the record value, with the format varying by value type:\n- `NUMBER`: the numeric value of the number (example: `42.0`)\n- `CALCULATION`: the numeric value of the calculation (example: `42.0`)\n- `ATTACHMENT`: the version count of the attachment (example: `2.0`)\n- `DATE`: the date measured in milliseconds since the Unix epoch (example: `1672552800000.0`)\n- `OPTION`: the numeric value of the option (example: `2.0`)\n- `USER`: a null value (example: `null`)\n- `TEXT`: a null value (example: `null`)",
             "format": "double",
+            "description": "The numeric representation of the record value, with the format varying by value type:\n- `NUMBER`: the numeric value of the number (example: `42.0`)\n- `CALCULATION`: the numeric value of the calculation (example: `42.0`)\n- `ATTACHMENT`: the version count of the attachment (example: `2.0`)\n- `DATE`: the date measured in milliseconds since the Unix epoch (example: `1672552800000.0`)\n- `OPTION`: the numeric value of the option (example: `2.0`)\n- `USER`: a null value (example: `null`)\n- `TEXT`: a null value (example: `null`)",
             "example": 2.0
           },
           "object": {
@@ -3222,19 +3230,16 @@
             "example": "value"
           }
         },
-        "description": "Value to be compared against."
+        "title": "Value (Property)"
       },
       "ApplicationApiCreateIn": {
-        "title": "Application (Create)",
-        "required": [
-          "name"
-        ],
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
             "description": "The name of the application",
-            "example": "Cyber Risk Management Application"
+            "example": "Cyber Risk Management Application",
+            "minLength": 1
           },
           "description": {
             "type": "string",
@@ -3249,7 +3254,6 @@
           "icon": {
             "type": "string",
             "description": "The icon type of the application (defaults to CUBES)",
-            "example": "CUBES",
             "enum": [
               "BOOKMARK",
               "BOLT",
@@ -3276,12 +3280,12 @@
               "SIGNAL",
               "UNIVERSITY",
               "USER_CIRCLE"
-            ]
+            ],
+            "example": "CUBES"
           },
           "type": {
             "type": "string",
             "description": "The type of Risk Cloud application (defaults to NONE)",
-            "example": "CONTROLS_COMPLIANCE",
             "enum": [
               "ACCESS_MANAGEMENT",
               "AML_KYC",
@@ -3319,12 +3323,16 @@
               "STANDARDS_REGULATIONS",
               "SURVEY",
               "THIRD_PARTY_RISK_MANAGEMENT"
-            ]
+            ],
+            "example": "CONTROLS_COMPLIANCE"
           }
-        }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "Application (Create)"
       },
       "ApplicationApiOut": {
-        "title": "Application (Response)",
         "type": "object",
         "properties": {
           "id": {
@@ -3350,7 +3358,6 @@
           "icon": {
             "type": "string",
             "description": "The icon type of the application",
-            "example": "CUBES",
             "enum": [
               "BOOKMARK",
               "BOLT",
@@ -3377,12 +3384,12 @@
               "SIGNAL",
               "UNIVERSITY",
               "USER_CIRCLE"
-            ]
+            ],
+            "example": "CUBES"
           },
           "type": {
             "type": "string",
             "description": "The type of Risk Cloud application",
-            "example": "CONTROLS_COMPLIANCE",
             "enum": [
               "ACCESS_MANAGEMENT",
               "AML_KYC",
@@ -3420,7 +3427,8 @@
               "STANDARDS_REGULATIONS",
               "SURVEY",
               "THIRD_PARTY_RISK_MANAGEMENT"
-            ]
+            ],
+            "example": "CONTROLS_COMPLIANCE"
           },
           "live": {
             "type": "boolean",
@@ -3437,10 +3445,10 @@
             "description": "Identifies the type of object this data represents",
             "example": "application"
           }
-        }
+        },
+        "title": "Application (Response)"
       },
       "LegacyApiTokenOut": {
-        "title": "Api Token",
         "type": "object",
         "properties": {
           "access_token": {
@@ -3453,18 +3461,19 @@
           },
           "expires_in": {
             "type": "integer",
-            "description": "The remaining time in seconds until the token expires",
-            "format": "int64"
+            "format": "int64",
+            "description": "The remaining time in seconds until the token expires"
           },
           "scope": {
             "type": "string",
             "description": "The privilege scope of the token, expected to be \"read write\" for the Risk Cloud API"
           }
-        }
+        },
+        "title": "Api Token"
       },
       "WorkflowApiUpdateIn": {
-        "title": "Workflow (Update)",
         "type": "object",
+        "description": "Workflow (Update)",
         "properties": {
           "name": {
             "type": "string",
@@ -3482,46 +3491,46 @@
             "example": "Assessment"
           },
           "xpos": {
-            "minimum": 0,
             "type": "integer",
-            "description": "The x-coordinate of the workflow in the application builder (must not be less than 0)",
             "format": "int32",
-            "example": 20
+            "description": "The x-coordinate of the workflow in the application builder (must not be less than 0)",
+            "example": 20,
+            "minimum": 0
           },
           "ypos": {
-            "minimum": 0,
             "type": "integer",
-            "description": "The y-coordinate of the workflow in the application builder (must not be less than 0)",
             "format": "int32",
-            "example": 20
+            "description": "The y-coordinate of the workflow in the application builder (must not be less than 0)",
+            "example": 20,
+            "minimum": 0
           }
         },
-        "description": "Workflow (Update)"
+        "title": "Workflow (Update)"
       },
       "WorkflowMapApiUpdateIn": {
-        "title": "Workflow Map (Update)",
-        "required": [
-          "relationship"
-        ],
         "type": "object",
+        "description": "Workflow (Update)",
         "properties": {
           "relationship": {
             "type": "string",
             "description": "The type of the relationship between workflows",
-            "example": "ONE_TO_MANY",
             "enum": [
               "OneToOne",
               "OneToMany",
               "ManyToOne",
               "ManyToMany"
-            ]
+            ],
+            "example": "ONE_TO_MANY"
           }
         },
-        "description": "Workflow (Update)"
+        "required": [
+          "relationship"
+        ],
+        "title": "Workflow Map (Update)"
       },
       "StepApiUpdateIn": {
-        "title": "Step (Update)",
         "type": "object",
+        "description": "Step (Update)",
         "properties": {
           "name": {
             "type": "string",
@@ -3535,25 +3544,25 @@
           },
           "xpos": {
             "type": "integer",
-            "description": "The x-coordinate of the step in the application builder (must not be less than 0)",
             "format": "int32",
+            "description": "The x-coordinate of the step in the application builder (must not be less than 0)",
             "example": 20
           },
           "ypos": {
             "type": "integer",
-            "description": "The y-coordinate of the step in the application builder (must not be less than 0)",
             "format": "int32",
+            "description": "The y-coordinate of the step in the application builder (must not be less than 0)",
             "example": 20
           },
           "type": {
             "type": "string",
             "description": "The type of the step (for END steps, this property cannot be updated since there would be no outgoing default next paths)",
-            "example": "ORIGIN",
             "enum": [
               "ORIGIN",
               "CHAIN",
               "END"
-            ]
+            ],
+            "example": "ORIGIN"
           },
           "enableComments": {
             "type": "boolean",
@@ -3563,12 +3572,12 @@
           "assignableUserType": {
             "type": "string",
             "description": "Indicates which users are allowed to be assigned this step on a record",
-            "example": "APP_USERS",
             "enum": [
               "APP_AND_EXTERNAL_USERS",
               "APP_USERS",
               "EXTERNAL_USERS"
-            ]
+            ],
+            "example": "APP_USERS"
           },
           "externalUserMfaRequired": {
             "type": "boolean",
@@ -3576,10 +3585,11 @@
             "example": false
           }
         },
-        "description": "Step (Update)"
+        "title": "Step (Update)"
       },
       "PathApiUpdateIn": {
         "type": "object",
+        "description": "Default next path (Update).",
         "properties": {
           "allowInternal": {
             "type": "boolean",
@@ -3606,12 +3616,11 @@
             "description": "Require an assignee to be chosen",
             "example": false
           }
-        },
-        "description": "Default next path (Update)."
+        }
       },
       "EdgePathApiUpdateIn": {
-        "title": "Conditional edge path (Update).",
         "type": "object",
+        "description": "Conditional edge path (Update).",
         "properties": {
           "allowInternal": {
             "type": "boolean",
@@ -3641,7 +3650,6 @@
           "operator": {
             "type": "string",
             "description": "Type of operator for an edge path.",
-            "example": "EQUALS",
             "enum": [
               "EQUALS",
               "NOT_EQUALS",
@@ -3657,19 +3665,19 @@
               "NOT_NULL",
               "DATE_RANGE",
               "NUMERIC_RANGE"
-            ]
+            ],
+            "example": "EQUALS"
           },
           "priority": {
             "type": "integer",
-            "description": "Determines which edge path should be invoked first. Priority is in descending order with 0 being the first edge.",
             "format": "int32",
+            "description": "Determines which edge path should be invoked first. Priority is in descending order with 0 being the first edge.",
             "example": 0
           }
         },
-        "description": "Conditional edge path (Update)."
+        "title": "Conditional edge path (Update)."
       },
       "ApplicationApiUpdateIn": {
-        "title": "Application (Update)",
         "type": "object",
         "properties": {
           "name": {
@@ -3690,7 +3698,6 @@
           "icon": {
             "type": "string",
             "description": "The icon type of the application",
-            "example": "CUBES",
             "enum": [
               "BOOKMARK",
               "BOLT",
@@ -3717,12 +3724,12 @@
               "SIGNAL",
               "UNIVERSITY",
               "USER_CIRCLE"
-            ]
+            ],
+            "example": "CUBES"
           },
           "type": {
             "type": "string",
             "description": "The type of Risk Cloud application",
-            "example": "CONTROLS_COMPLIANCE",
             "enum": [
               "ACCESS_MANAGEMENT",
               "AML_KYC",
@@ -3760,7 +3767,8 @@
               "STANDARDS_REGULATIONS",
               "SURVEY",
               "THIRD_PARTY_RISK_MANAGEMENT"
-            ]
+            ],
+            "example": "CONTROLS_COMPLIANCE"
           },
           "live": {
             "type": "boolean",
@@ -3772,41 +3780,40 @@
             "description": "Whether users with the Build entitlement must be explicitly granted permission to edit this application",
             "example": false
           }
-        }
+        },
+        "title": "Application (Update)"
       },
       "PageInfoOut": {
-        "title": "Page Info",
         "type": "object",
         "properties": {
           "size": {
             "type": "integer",
-            "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "format": "int64",
+            "description": "The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)",
             "example": 20
           },
           "totalElements": {
             "type": "integer",
-            "description": "The total number of items available",
             "format": "int64",
+            "description": "The total number of items available",
             "example": 50
           },
           "totalPages": {
             "type": "integer",
-            "description": "The total number of pages available based on the size",
             "format": "int64",
+            "description": "The total number of pages available based on the size",
             "example": 3
           },
           "number": {
             "type": "integer",
-            "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "format": "int64",
+            "description": "The zero-indexed page number (must not be less than 0, defaults to 0)",
             "example": 0
           }
         },
-        "description": "A collection page metadata"
+        "title": "Page Info"
       },
       "PageLinksOut": {
-        "title": "Page Links",
         "type": "object",
         "properties": {
           "first": {
@@ -3835,10 +3842,9 @@
             "example": "/api/v2/resource?page\u003d6\u0026size\u003d20"
           }
         },
-        "description": "A collection of page URL links for navigation and iteration"
+        "title": "Page Links"
       },
       "PageModelOutWorkflowApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -3849,15 +3855,17 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       },
       "PageModelOutWorkflowMapApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -3868,15 +3876,17 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       },
       "PageModelOutStepApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -3887,15 +3897,17 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       },
       "FieldRecordApiOut": {
-        "title": "Field (Record)",
         "type": "object",
         "properties": {
           "id": {
@@ -3919,10 +3931,8 @@
             "example": false
           },
           "type": {
-            "title": "Field Type",
             "type": "string",
             "description": "The type of the field",
-            "example": "SELECT",
             "enum": [
               "DATE",
               "USER",
@@ -3941,12 +3951,13 @@
               "LINKED_RECORDS_COUNT",
               "DATE_CALCULATION",
               "OTHER"
-            ]
+            ],
+            "example": "SELECT",
+            "title": "Field Type"
           },
           "valueType": {
             "type": "string",
             "description": "The type of the field value",
-            "example": "OPTION",
             "enum": [
               "NUMBER",
               "CALCULATION",
@@ -3956,7 +3967,8 @@
               "USER",
               "TEXT",
               "OTHER"
-            ]
+            ],
+            "example": "OPTION"
           },
           "required": {
             "type": "boolean",
@@ -3976,10 +3988,9 @@
             "example": "field"
           }
         },
-        "description": "The fields and values of the record"
+        "title": "Field (Record)"
       },
       "PageModelOutRecordApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -3990,15 +4001,17 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       },
       "RecordApiOut": {
-        "title": "Record (Response)",
         "type": "object",
         "properties": {
           "id": {
@@ -4019,41 +4032,48 @@
           "status": {
             "type": "string",
             "description": "The status of the record",
-            "example": "IN_PROGRESS",
             "enum": [
               "INACTIVE",
               "NOT_ASSIGNED",
               "ASSIGNED",
               "IN_PROGRESS",
               "COMPLETE"
-            ]
+            ],
+            "example": "IN_PROGRESS"
           },
           "sequenceNumber": {
             "type": "integer",
-            "description": "The sequence number of the record",
             "format": "int64",
+            "description": "The sequence number of the record",
             "example": 7
           },
           "dates": {
-            "$ref": "#/components/schemas/RecordDatesApiOut"
+            "$ref": "#/components/schemas/RecordDatesApiOut",
+            "description": "Date information associated with the record"
           },
           "assignee": {
-            "$ref": "#/components/schemas/UserPropertyApiOut"
+            "$ref": "#/components/schemas/UserPropertyApiOut",
+            "description": "The current assignee of the record"
           },
           "creator": {
-            "$ref": "#/components/schemas/UserPropertyApiOut"
+            "$ref": "#/components/schemas/UserPropertyApiOut",
+            "description": "The creator of the record"
           },
           "application": {
-            "$ref": "#/components/schemas/ApplicationPropertyApiOut"
+            "$ref": "#/components/schemas/ApplicationPropertyApiOut",
+            "description": "The parent application of the record"
           },
           "workflow": {
-            "$ref": "#/components/schemas/WorkflowPropertyApiOut"
+            "$ref": "#/components/schemas/WorkflowPropertyApiOut",
+            "description": "The parent workflow of the record"
           },
           "currentStep": {
-            "$ref": "#/components/schemas/StepPropertyApiOut"
+            "$ref": "#/components/schemas/StepPropertyApiOut",
+            "description": "The current step of the record"
           },
           "originStep": {
-            "$ref": "#/components/schemas/StepPropertyApiOut"
+            "$ref": "#/components/schemas/StepPropertyApiOut",
+            "description": "The origin step of the record"
           },
           "fields": {
             "type": "array",
@@ -4068,53 +4088,57 @@
             "example": "application"
           }
         },
-        "description": "A array of returned items"
+        "title": "Record (Response)"
       },
       "RecordDatesApiOut": {
-        "title": "Record Dates",
         "type": "object",
         "properties": {
           "created": {
             "type": "string",
+            "format": "date-time",
             "description": "The moment this Risk Cloud resource was created measured in milliseconds since the Unix epoch.",
-            "format": "date-time"
+            "example": 1672552800000
           },
           "dueDate": {
             "type": "string",
+            "format": "date-time",
             "description": "The due date of this record and step SLA measured in milliseconds since the Unix epoch",
-            "format": "date-time"
+            "example": 1672552800000
           },
           "recordDueDate": {
             "type": "string",
+            "format": "date-time",
             "description": "The due date of this record measured in milliseconds since the Unix epoch",
-            "format": "date-time"
+            "example": 1672552800000
           },
           "daysUntilDue": {
             "type": "integer",
-            "description": "The number of days until this record is due",
             "format": "int64",
+            "description": "The number of days until this record is due",
             "example": 3
           },
           "updated": {
             "type": "string",
+            "format": "date-time",
             "description": "The moment this Risk Cloud resource was last updated measured in milliseconds since the Unix epoch.",
-            "format": "date-time"
+            "example": 1672552800000
           },
           "completed": {
             "type": "string",
+            "format": "date-time",
             "description": "The moment this record was completed if the record is currently in an end step measured in milliseconds since the Unix epoch",
-            "format": "date-time"
+            "example": 1672552800000
           },
           "lastCompleted": {
             "type": "string",
+            "format": "date-time",
             "description": "The moment this record was last completed regardless of if the record has transitioned from an end step measured in milliseconds since the Unix epoch",
-            "format": "date-time"
+            "example": 1672552800000
           }
         },
-        "description": "Date information associated with the record"
+        "title": "Record Dates"
       },
       "StepPropertyApiOut": {
-        "title": "Step (Property)",
         "type": "object",
         "properties": {
           "id": {
@@ -4130,12 +4154,12 @@
           "type": {
             "type": "string",
             "description": "The type of the step",
-            "example": "ORIGIN",
             "enum": [
               "ORIGIN",
               "CHAIN",
               "END"
-            ]
+            ],
+            "example": "ORIGIN"
           },
           "object": {
             "type": "string",
@@ -4143,10 +4167,9 @@
             "example": "step"
           }
         },
-        "description": "The origin step of the record"
+        "title": "Step (Property)"
       },
       "UserPropertyApiOut": {
-        "title": "User (Property)",
         "type": "object",
         "properties": {
           "id": {
@@ -4170,7 +4193,7 @@
             "example": "user"
           }
         },
-        "description": "The creator of the record"
+        "title": "User (Property)"
       },
       "Pageable": {
         "type": "object",
@@ -4180,10 +4203,10 @@
             "format": "int64"
           },
           "sort": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SortObject"
-            }
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "unpaged": {
+            "type": "boolean"
           },
           "paged": {
             "type": "boolean"
@@ -4195,34 +4218,24 @@
           "pageSize": {
             "type": "integer",
             "format": "int32"
-          },
-          "unpaged": {
-            "type": "boolean"
           }
         }
       },
       "SortObject": {
         "type": "object",
         "properties": {
-          "direction": {
-            "type": "string"
-          },
-          "nullHandling": {
-            "type": "string"
-          },
-          "ascending": {
+          "empty": {
             "type": "boolean"
           },
-          "property": {
-            "type": "string"
+          "unsorted": {
+            "type": "boolean"
           },
-          "ignoreCase": {
+          "sorted": {
             "type": "boolean"
           }
         }
       },
       "PageModelOutRedirectPathApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -4233,15 +4246,17 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       },
       "PageModelOutNextPathApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -4252,15 +4267,17 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       },
       "PageModelOutEdgePathApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -4271,15 +4288,17 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       },
       "PageModelOutFieldApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -4290,15 +4309,17 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       },
       "AccessAuditApiOut": {
-        "title": "Access Audit",
         "type": "object",
         "properties": {
           "id": {
@@ -4307,10 +4328,8 @@
             "example": "a1b2c3d4"
           },
           "type": {
-            "title": "Access Audit Type",
             "type": "string",
             "description": "The type of access event that was logged, such as LOGIN, LOGOUT, or LOGIN_FAILED.",
-            "example": "LOGIN",
             "enum": [
               "LOGIN",
               "LOGOUT",
@@ -4318,10 +4337,13 @@
               "CREDENTIALS_ROLLED",
               "TOKEN_ROLLED",
               "OTHER"
-            ]
+            ],
+            "example": "LOGIN",
+            "title": "Access Audit Type"
           },
           "user": {
-            "$ref": "#/components/schemas/UserPropertyApiOut"
+            "$ref": "#/components/schemas/UserPropertyApiOut",
+            "description": "The user associated with the access event, including their ID, name, and email address."
           },
           "remoteAddress": {
             "type": "string",
@@ -4335,8 +4357,9 @@
           },
           "created": {
             "type": "string",
+            "format": "date-time",
             "description": "The created timestamp of the audit measured in milliseconds since the Unix epoch",
-            "format": "date-time"
+            "example": 1672552800000
           },
           "object": {
             "type": "string",
@@ -4344,10 +4367,9 @@
             "example": "access_audit"
           }
         },
-        "description": "A array of returned items"
+        "title": "Access Audit"
       },
       "PageModelOutAccessAuditApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -4358,15 +4380,17 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       },
       "PageModelOutApplicationApiOut": {
-        "title": "Page (Response)",
         "type": "object",
         "properties": {
           "content": {
@@ -4377,12 +4401,15 @@
             }
           },
           "links": {
-            "$ref": "#/components/schemas/PageLinksOut"
+            "$ref": "#/components/schemas/PageLinksOut",
+            "description": "A collection of page URL links for navigation and iteration"
           },
           "page": {
-            "$ref": "#/components/schemas/PageInfoOut"
+            "$ref": "#/components/schemas/PageInfoOut",
+            "description": "A collection page metadata"
           }
-        }
+        },
+        "title": "Page (Response)"
       }
     },
     "securitySchemes": {

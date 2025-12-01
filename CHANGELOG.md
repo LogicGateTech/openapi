@@ -1,3 +1,7 @@
+## v2025.11.1
+
+No API updates.
+
 ## v2025.11.0
 
 #### What's Changed
