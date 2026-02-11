@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2026.1.1"
+    "version": "v2026.2.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -2587,6 +2587,11 @@
             "type": "boolean",
             "description": "Whether MFA is required for external users to access this step. (defaults to false)",
             "example": false
+          },
+          "autofillEnabled": {
+            "type": "boolean",
+            "description": "Whether or not to enable autofill on the step.",
+            "example": false
           }
         },
         "required": [
@@ -2653,6 +2658,11 @@
           "externalUserMfaRequired": {
             "type": "boolean",
             "description": "Whether MFA is required for external users to access this step.",
+            "example": false
+          },
+          "autofillEnabled": {
+            "type": "boolean",
+            "description": "Whether or not to enable autofill on the step.",
             "example": false
           },
           "workflow": {
@@ -3636,6 +3646,11 @@
           "externalUserMfaRequired": {
             "type": "boolean",
             "description": "Whether MFA is required for external users to access this step.",
+            "example": false
+          },
+          "autofillEnabled": {
+            "type": "boolean",
+            "description": "Whether or not to enable autofill on the step.",
             "example": false
           }
         },
