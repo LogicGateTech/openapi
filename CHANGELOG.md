@@ -1,3 +1,7 @@
+## v2026.3.2
+
+No API updates.
+
 ## v2026.3.1
 
 No API updates.
