@@ -7,7 +7,7 @@
       "name": "developer-relations@logicgate.com",
       "email": "developer-relations@logicgate.com"
     },
-    "version": "v2026.4.0"
+    "version": "v2026.4.1"
   },
   "externalDocs": {
     "description": "Developer Portal",
@@ -3760,6 +3760,85 @@
         },
         "title": "Application (Property)"
       },
+      "Crossflow (Response)": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource"
+          },
+          "crossflowReducer": {
+            "type": "string",
+            "enum": [
+              "NEWEST",
+              "OLDEST",
+              "MOST_RECENTLY_LINKED",
+              "LEAST_RECENTLY_LINKED",
+              "SUM",
+              "AVERAGE",
+              "HIGHEST",
+              "LOWEST"
+            ]
+          },
+          "calcSpecificToStep": {
+            "type": "boolean"
+          },
+          "calcStep": {
+            "$ref": "#/components/schemas/StepApiOut"
+          },
+          "systemField": {
+            "type": "string",
+            "enum": [
+              "NAME",
+              "STATUS",
+              "CREATED",
+              "ENTERED_STEP_DATE",
+              "USER_DATE",
+              "EFFECTIVE_DUE_DATE",
+              "STEP_DUE_DATE",
+              "CURRENT_DATE",
+              "DUE_DATE",
+              "DAYS_UNTIL_DUE",
+              "SIMILARITY",
+              "RATIONALE",
+              "COMPLETED_DATE",
+              "LAST_COMPLETED_DATE",
+              "ID",
+              "SEQUENCE",
+              "ASSESSMENT_COUNT",
+              "USER_NAME",
+              "USER_ID",
+              "CREATOR_NAME",
+              "USER_GROUP",
+              "STEP_NAME",
+              "STEP_ID",
+              "ORIGIN_NAME",
+              "ORIGIN_ID",
+              "WORKFLOW_NAME",
+              "WORKFLOW_RECORD_PREFIX",
+              "WORKFLOW_ID",
+              "PRIMARY_FIELD",
+              "STATE"
+            ]
+          },
+          "fieldWorkflow": {
+            "$ref": "#/components/schemas/WorkflowPropertyApiOut"
+          },
+          "fieldWorkflowId": {
+            "type": "string"
+          },
+          "customField": {
+            "$ref": "#/components/schemas/FieldPropertyApiOut"
+          },
+          "customFieldId": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "EdgePathApiOut": {
         "type": "object",
         "properties": {
@@ -3945,6 +4024,199 @@
             "items": {
               "$ref": "#/components/schemas/ValuePropertyApiOut"
             }
+          },
+          "pattern": {
+            "type": "string",
+            "description": "The regular expression used to validate field input.",
+            "example": "[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+          },
+          "message": {
+            "type": "string",
+            "description": "The text that displays in a Field when no value has been input yet."
+          },
+          "expression": {
+            "type": "string",
+            "description": "The mathematical expression used to calculate a value for a Calculation Field.",
+            "example": "%f + %f"
+          },
+          "nullStrategy": {
+            "type": "string",
+            "description": "The way in which null values are handled for a calculation.",
+            "example": "Available options are: null, 0, 1, N/A, a blank space, and an empty String."
+          },
+          "logicalHandling": {
+            "type": "string",
+            "description": "The comparison operator used to define label range boundaries for a calculation field. Determines whether ranges are created for values greater than or less than the baseline number.",
+            "enum": [
+              "EQUALS",
+              "NOT_EQUALS",
+              "IS",
+              "IS_NOT",
+              "GREATER_THAN",
+              "GREATER_THAN_EQUALS",
+              "LESS_THAN",
+              "LESS_THAN_EQUALS",
+              "CONTAINS",
+              "DOES_NOT_CONTAIN",
+              "NULL",
+              "NOT_NULL",
+              "DATE_RANGE",
+              "NUMERIC_RANGE"
+            ],
+            "example": "Some examples are: EQUALS, NOT_EQUALS, GREATER_THAN, GREATER_THAN_EQUALS, etc."
+          },
+          "labelsEnabled": {
+            "type": "boolean",
+            "description": "A true or false describing if labels are enabled.",
+            "example": true
+          },
+          "fieldInputs": {
+            "type": "array",
+            "description": "The Fields that are used by a calculation as input.",
+            "items": {
+              "$ref": "#/components/schemas/Crossflow (Response)"
+            }
+          },
+          "linkDepth": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of relationship hops from the source Record that the Linked Records Count calculation counts. Value between 1 and 10."
+          },
+          "object": {
+            "type": "string",
+            "description": "Identifies the type of object this data represents",
+            "example": "field"
+          }
+        },
+        "title": "Field (Response)"
+      },
+      "FieldPropertyApiOut": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this Risk Cloud resource",
+            "example": "a1b2c3d4"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the field",
+            "example": "Risk Severity"
+          },
+          "label": {
+            "type": "string",
+            "description": "The label of the field as shown on the record",
+            "example": "Enter the Risk Severity based on your assessment"
+          },
+          "global": {
+            "type": "boolean",
+            "description": "Whether the field is global",
+            "example": false
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the field is required for the current step",
+            "example": false
+          },
+          "tooltip": {
+            "type": "string",
+            "description": "The tooltip information of the field",
+            "example": "Select the Risk Severity"
+          },
+          "helpText": {
+            "type": "string",
+            "description": "The help text of the field to supply necessary context for filling out the field",
+            "example": "Determine the Risk Severity from your assessment"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the field",
+            "enum": [
+              "DATE",
+              "USER",
+              "EXTERNAL_USER",
+              "TEXT",
+              "TEXT_AREA",
+              "NUMBER",
+              "E_SIGNATURE",
+              "CHECKBOX",
+              "MULTI_SELECT",
+              "RADIO",
+              "SELECT",
+              "ATTACHMENT",
+              "CALCULATION",
+              "TEXT_CONCATENATION",
+              "LINKED_RECORDS_COUNT",
+              "DATE_CALCULATION",
+              "OTHER"
+            ],
+            "example": "SELECT",
+            "title": "Field Type"
+          },
+          "valueType": {
+            "type": "string",
+            "description": "The type of the field value",
+            "enum": [
+              "NUMBER",
+              "CALCULATION",
+              "ATTACHMENT",
+              "DATE",
+              "OPTION",
+              "USER",
+              "TEXT",
+              "OTHER"
+            ],
+            "example": "OPTION"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "The regular expression used to validate field input.",
+            "example": "[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+          },
+          "message": {
+            "type": "string",
+            "description": "The text that displays in a Field when no value has been input yet."
+          },
+          "expression": {
+            "type": "string",
+            "description": "The mathematical expression used to calculate a value for a Calculation Field.",
+            "example": "%f + %f"
+          },
+          "nullStrategy": {
+            "type": "string",
+            "description": "The way in which null values are handled for a calculation.",
+            "example": "Available options are: null, 0, 1, N/A, a blank space, and an empty String."
+          },
+          "logicalHandling": {
+            "type": "string",
+            "description": "The comparison operator used to define label range boundaries for a calculation field. Determines whether ranges are created for values greater than or less than the baseline number.",
+            "enum": [
+              "EQUALS",
+              "NOT_EQUALS",
+              "IS",
+              "IS_NOT",
+              "GREATER_THAN",
+              "GREATER_THAN_EQUALS",
+              "LESS_THAN",
+              "LESS_THAN_EQUALS",
+              "CONTAINS",
+              "DOES_NOT_CONTAIN",
+              "NULL",
+              "NOT_NULL",
+              "DATE_RANGE",
+              "NUMERIC_RANGE"
+            ],
+            "example": "Some examples are: EQUALS, NOT_EQUALS, GREATER_THAN, GREATER_THAN_EQUALS, etc."
+          },
+          "labelsEnabled": {
+            "type": "boolean",
+            "description": "A true or false describing if labels are enabled.",
+            "example": true
+          },
+          "linkDepth": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of relationship hops from the source Record that the Linked Records Count calculation counts. Value between 1 and 10."
           },
           "object": {
             "type": "string",
